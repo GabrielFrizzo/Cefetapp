@@ -1,8 +1,12 @@
 from PyQt5.QtWidgets import QApplication, QLabel
+from PyQt5 import uic
 from sys import argv
 
-app = QApplication(argv)
+Form, Window = uic.loadUiType("MainWindow.ui")
 
-label = QLabel('Hello World!')
-label.show()
+app = QApplication(argv)
+window = Window()
+form = Form()
+form.setupUi(window)
+window.show()
 app.exec_()
