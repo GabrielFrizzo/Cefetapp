@@ -12,10 +12,6 @@ const routes: Routes = [
     loadChildren: () => import('./home/home.module').then(m => m.HomePageModule)
   },
   {
-    path: 'list',
-    loadChildren: () => import('./list/list.module').then(m => m.ListPageModule)
-  },
-  {
     path: 'boletim', 
     loadChildren: './boletim/boletim.module#BoletimPageModule' 
   },
@@ -30,7 +26,12 @@ const routes: Routes = [
   {
     path: 'disciplinas-matriculadas', 
     loadChildren: './disciplinas-matriculadas/disciplinas-matriculadas.module#DisciplinasMatriculadasPageModule' 
+  },
+  {
+    path: 'login',
+    loadChildren: () => import('./login/login.module').then(m => m.LoginPageModule)
   }
+
 ];
 
 @NgModule({
