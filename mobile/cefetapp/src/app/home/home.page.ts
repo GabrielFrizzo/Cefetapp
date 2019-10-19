@@ -1,5 +1,4 @@
-import { Component } from '@angular/core';
-import {WeekDay} from '@angular/common';
+import { Component, Pipe, PipeTransform } from '@angular/core';
 
 @Component({
   selector: 'app-home',
@@ -11,33 +10,33 @@ export class HomePage {
   constructor() {}
 
   public schedule = [
-    { name: 'CSG20-S71', room: 'B-107',day : WeekDay.Wednesday, slot: Slot.M3 },
-    { name: 'CSG20-S71', room: 'B-107',day : WeekDay.Wednesday, slot: Slot.M4 },
-    { name: 'CSG20-S71', room: 'B-107',day : WeekDay.Wednesday, slot: Slot.M5 }
+    { name: 'CSG20-S71', room: 'B-107',day : WeekDay.Qua, slot: Slot.M3 },
+    { name: 'CSG20-S71', room: 'B-107',day : WeekDay.Qua, slot: Slot.M4 },
+    { name: 'CSG20-S71', room: 'B-107',day : WeekDay.Qua, slot: Slot.M5 }
   ]
 
+  slots = Slot
+  weekdays = WeekDay
+
   weekdayToString(day: WeekDay):string {
-    switch (day) {
-      case WeekDay.Sunday:
-        return 'Dom';
-  
-      case WeekDay.Monday:
+    switch (day) {  
+      case WeekDay.Seg:
         return 'Seg';
       
-      case WeekDay.Tuesday:
+      case WeekDay.Ter:
         return 'Ter';
   
-      case WeekDay.Wednesday:
+      case WeekDay.Qua:
         return 'Qua';
         
-      case WeekDay.Thursday:
+      case WeekDay.Qui:
         return 'Qui';
     
-      case WeekDay.Friday:
+      case WeekDay.Sex:
         return 'Sex';
       
-      case WeekDay.Saturday:
-        return 'Sat';
+      case WeekDay.Sáb:
+        return 'Sáb';
   
       default:
         return '';
@@ -52,6 +51,14 @@ export class HomePage {
     }
     return 'N' + (slot - 11);
   }
+
+  scheduleContains(day:any, slot:any):string {
+    let found = this.schedule.find(e => this.slotToString(e.slot) === slot && this.weekdayToString(e.day) === day)
+    if (found) {
+      return found.name;
+    }
+    return '';
+  }
 }
 
 enum Slot {
@@ -60,3 +67,21 @@ enum Slot {
   N1, N2, N3, N4, N5
 }
 
+enum WeekDay {
+  Seg = 1,
+  Ter = 2,
+  Qua = 3,
+  Qui = 4,
+  Sex = 5,
+  Sáb = 6
+}
+
+@Pipe({
+  name: 'enumToArray'
+})
+export class EnumToArrayPipe implements PipeTransform {
+  transform(data: Object) {
+    const keys = Object.keys(data);
+    return keys.slice(keys.length / 2);
+  }
+}

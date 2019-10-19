@@ -11,14 +11,26 @@
 
 <!--TODO: deixar essa bagaça bunita-->
 <ion-content>
-  <ion-list>
-    <ion-item *ngFor="let item of schedule">
-      <p> {{item.name}} - {{item.room}} - {{weekdayToString(item.day)}} - {{slotToString(item.slot)}} </p>
-    </ion-item>
-  </ion-list>
-  <!--
-    <div *ngIf="selectedItem" padding>
-      You navigated here from <b>{{selectedItem.title }}</b>
-    </div>
-  -->
+
+  <ion-grid fixed>
+      <ion-row align-items-center justify-content-center text-center>
+        <ion-col size="2">Segunda</ion-col>
+        <ion-col size="2">Terça</ion-col>
+        <ion-col size="2">Quarta</ion-col>
+        <ion-col size="2">Quinta</ion-col>
+        <ion-col size="2">Sexta</ion-col>
+        <ion-col size="2">Sábado</ion-col>
+      </ion-row>
+      <ion-row *ngFor="let slot of slots | enumToArray" text-center>
+        <ion-col class="schedule" *ngFor="let day of weekdays| enumToArray" size="2">
+            <ion-item lines="none" *ngIf="scheduleContains(day,slot); else noAppointment; let appointment" color="primary">
+              <ion-label position="inline" class="ion-text-center">{{appointment}}</ion-label>
+            </ion-item>
+            <ng-template #noAppointment>
+                <ion-item lines="none" color="light"></ion-item>
+            </ng-template>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+
 </ion-content>
