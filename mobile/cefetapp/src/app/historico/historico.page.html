@@ -4,9 +4,45 @@
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
     <ion-title>Histórico</ion-title>
+    <ion-buttons slot="end">
+        <ion-button [routerLink]="['/settings']">
+          <ion-icon slot="icon-only" name="settings"></ion-icon>
+        </ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
 
+  <ion-grid fixed>
+    <ion-row align-items-center justify-content-center text-center>
+      <ion-col size='2'>Semestre</ion-col>
+      <ion-col size='2'>Cód.</ion-col>
+      <ion-col>Disciplina</ion-col>
+      <ion-col size='1'>Turma</ion-col>
+      <ion-col size='1'>Média</ion-col>
+      <ion-col size='1'>Freq.</ion-col>
+    </ion-row>
+      <ion-row *ngFor="let subject of record" text-center>
+        <ion-col size='2'>
+          {{subject.term}}
+        </ion-col>
+        <ion-col size='2'>
+          {{subject.code}}
+        </ion-col>
+        <ion-col>
+          {{subject.name}}
+        </ion-col>
+        <ion-col size='1'>
+          {{subject.class}}
+        </ion-col>
+        <ion-col size='1'>
+          {{subject.grade}}
+        </ion-col>
+        <ion-col size='1'>
+          {{subject.freq}}
+        </ion-col>
+      </ion-row>
+  </ion-grid>
+  
 </ion-content>

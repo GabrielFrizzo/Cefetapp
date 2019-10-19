@@ -5,12 +5,16 @@
     </ion-buttons>
     <ion-title>
       Grade Horária
-    </ion-title>
+    </ion-title>    
+    <ion-buttons slot="end">
+        <ion-button [routerLink]="['/settings']">
+          <ion-icon slot="icon-only" name="settings"></ion-icon>
+        </ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
-<!--TODO: deixar essa bagaça bunita-->
-<ion-content>
+<ion-content padding>
 
   <ion-grid fixed>
       <ion-row align-items-center justify-content-center text-center>

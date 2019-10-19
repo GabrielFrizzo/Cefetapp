@@ -12,4 +12,7 @@ export class BoletimPage implements OnInit {
   ngOnInit() {
   }
 
+  public report_card = [
+    { name: 'CSG20-S71', freq: 90.3 , grade: 0}
+  ]
 }

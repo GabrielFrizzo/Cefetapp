@@ -4,9 +4,33 @@
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
     <ion-title>Boletim</ion-title>
+    <ion-buttons slot="end">
+        <ion-button [routerLink]="['/settings']">
+          <ion-icon slot="icon-only" name="settings"></ion-icon>
+        </ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
+
+    <ion-grid fixed>
+        <ion-row align-items-center justify-content-center text-center>
+          <ion-col>Disciplina</ion-col>
+          <ion-col>Frequência</ion-col>
+          <ion-col>Média</ion-col>
+        </ion-row>
+        <ion-row *ngFor="let subject of report_card" text-center>
+          <ion-col>
+            {{subject.name}}
+          </ion-col>
+          <ion-col>
+            {{subject.freq}}
+          </ion-col>
+          <ion-col>
+            {{subject.grade}}
+          </ion-col>
+        </ion-row>
+      </ion-grid>
 
 </ion-content>

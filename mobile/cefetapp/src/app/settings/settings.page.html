@@ -1,0 +1,28 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Configurações</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid>
+      <ion-row justify-content-center>
+        <ion-col>
+          <div padding>
+            <ion-item>
+              <ion-label>Gostaria de receber notificação quando sua aula estiver prestes a iniciar?</ion-label>
+              <ion-select interface="popover">
+                <ion-select-option value="15">Sim, 15 min antes</ion-select-option>
+                <ion-select-option value="30">Sim, 30 min antes</ion-select-option>
+                <ion-select-option value="30">Sim, 60 min antes</ion-select-option>
+                <ion-select-option value="Não">Não quero receber notificações</ion-select-option>
+              </ion-select>
+            </ion-item>
+          </div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
