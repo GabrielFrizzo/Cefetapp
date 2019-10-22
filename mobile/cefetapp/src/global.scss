@@ -28,3 +28,7 @@
 .popover-content {
     --min-width: 60%;
 }
+
+.split-pane-md.split-pane-visible > .split-pane-side {
+    max-width: 22%;
+}

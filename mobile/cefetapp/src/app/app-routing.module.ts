@@ -12,28 +12,28 @@ const routes: Routes = [
     loadChildren: () => import('./home/home.module').then(m => m.HomePageModule)
   },
   {
-    path: 'boletim', 
-    loadChildren: './boletim/boletim.module#BoletimPageModule' 
+    path: 'boletim',
+    loadChildren: './boletim/boletim.module#BoletimPageModule'
   },
   {
-    path: 'biblioteca', 
-    loadChildren: './biblioteca/biblioteca.module#BibliotecaPageModule' 
+    path: 'biblioteca',
+    loadChildren: './biblioteca/biblioteca.module#BibliotecaPageModule'
   },
   {
-    path: 'historico', 
-    loadChildren: './historico/historico.module#HistoricoPageModule' 
+    path: 'historico',
+    loadChildren: './historico/historico.module#HistoricoPageModule'
   },
   {
-    path: 'disciplinas-matriculadas', 
-    loadChildren: './disciplinas-matriculadas/disciplinas-matriculadas.module#DisciplinasMatriculadasPageModule' 
+    path: 'disciplinas-matriculadas',
+    loadChildren: './disciplinas-matriculadas/disciplinas-matriculadas.module#DisciplinasMatriculadasPageModule'
   },
   {
     path: 'login',
     loadChildren: () => import('./login/login.module').then(m => m.LoginPageModule)
   },
-  { 
+  {
     path: 'settings',
-    loadChildren: './settings/settings.module#SettingsPageModule' 
+    loadChildren: './settings/settings.module#SettingsPageModule'
   }
 
 
