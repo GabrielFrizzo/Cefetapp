@@ -13,5 +13,21 @@
 </ion-header>
 
 <ion-content>
+  <ion-searchbar placeholder='procurando por um livro?'></ion-searchbar>
 
+  <ion-card *ngFor='let book of books'>
+    <ion-card-header>
+      <ion-card-title>{{ book.title }}</ion-card-title>
+      <ion-card-subtitle>{{ book.author }}</ion-card-subtitle>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-item>
+        <ion-label>Renovações:</ion-label>
+        <ion-button class='renew-button' slot='end' [ngClass]="(book.renewals==3)?'ren-limit':'ren-succ'">
+          {{ book.renewals }}/3
+          <ion-icon name='refresh'></ion-icon>
+        </ion-button>
+      </ion-item>
+    </ion-card-content>
+  </ion-card>
 </ion-content>
