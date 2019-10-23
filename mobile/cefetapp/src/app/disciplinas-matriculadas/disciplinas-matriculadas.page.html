@@ -21,12 +21,12 @@
         
         <ion-card-content>
           <ion-item color='primary' lines='none'>
-            <ion-badge color='tertiary' class='room-badge' slot='end'>{{ subject.room }}</ion-badge>
+            <ion-badge color='dark' class='room-badge' slot='end'>{{ subject.room }}</ion-badge>
           </ion-item>
-          
-        <ion-label>
+        
+        <ion-badge color='dark'>
           <p *ngFor='let time of subject.times'>{{ time.day }}: {{ time.start }} - {{ time.end }}</p>
-        </ion-label>
-        </ion-card-content>
-      </ion-card>
+        </ion-badge>
+      </ion-card-content>        
+    </ion-card>
 </ion-content>
