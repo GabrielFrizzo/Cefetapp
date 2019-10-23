@@ -13,28 +13,20 @@
 </ion-header>
 
 <ion-content>
-
-  <ion-grid fixed>
-    <ion-row align-items-center justify-content-center text-center>
-      <ion-col size='2'>Código</ion-col>
-      <ion-col>Nome</ion-col>
-      <ion-col size='2'>Sala</ion-col>
-      <ion-col size='2'>Turma</ion-col>
-    </ion-row>
-      <ion-row *ngFor="let subject of subjects" text-center>
-        <ion-col size='2'>
-          {{subject.code}}
-        </ion-col>
-        <ion-col>
-          {{subject.name}}
-        </ion-col>
-        <ion-col size='2'>
-          {{subject.room}}
-        </ion-col>
-        <ion-col size='2'>
-          {{subject.class}}
-        </ion-col>
-      </ion-row>
-  </ion-grid>
-
+    <ion-card color='primary' *ngFor='let subject of subjects'>
+        <ion-card-header>
+          <ion-card-title>{{ subject.name }}</ion-card-title>
+          <ion-card-subtitle>{{ subject.code }}-{{ subject.class }}</ion-card-subtitle>
+        </ion-card-header>
+        
+        <ion-card-content>
+          <ion-item color='primary' lines='none'>
+            <ion-badge color='tertiary' class='room-badge' slot='end'>{{ subject.room }}</ion-badge>
+          </ion-item>
+          
+        <ion-label>
+          <p *ngFor='let time of subject.times'>{{ time.day }}: {{ time.start }} - {{ time.end }}</p>
+        </ion-label>
+        </ion-card-content>
+      </ion-card>
 </ion-content>
