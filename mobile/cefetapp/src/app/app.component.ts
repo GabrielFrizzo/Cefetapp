@@ -14,7 +14,7 @@ export class AppComponent {
     {
       title: 'Grade Horária',
       url: '/home',
-      icon: 'home'
+      icon: 'calendar'
     },
     {
       title: 'Boletim',
@@ -24,7 +24,7 @@ export class AppComponent {
     {
       title: 'Biblioteca',
       url: '/biblioteca',
-      icon: 'paper-plane'
+      icon: 'bookmarks'
     },
     {
       title: 'Disciplinas Matriculadas',
@@ -34,7 +34,7 @@ export class AppComponent {
     {
       title: 'Histórico',
       url: '/historico',
-      icon: 'beer'
+      icon: 'school'
     },
   ];
 

@@ -6,3 +6,15 @@
 ion-col.schedule {
   padding: 1.4px;
 }
+
+.schedule-item {
+  --padding-start: 0;
+  --inner-padding-end: 0;
+  max-height: 50px;
+  overflow: visible;
+}
+
+.schedule-label {
+  margin-top: 0;
+  margin-bottom: 0;
+}

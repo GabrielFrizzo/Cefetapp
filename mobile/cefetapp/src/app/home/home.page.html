@@ -14,24 +14,26 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content padding>
-
+<ion-content class='ion-padding'>
   <ion-grid fixed>
-      <ion-row align-items-center justify-content-center text-center>
-        <ion-col size="2">Segunda</ion-col>
-        <ion-col size="2">Terça</ion-col>
-        <ion-col size="2">Quarta</ion-col>
-        <ion-col size="2">Quinta</ion-col>
-        <ion-col size="2">Sexta</ion-col>
-        <ion-col size="2">Sábado</ion-col>
+      <ion-row class='ion-align-items-center ion-justify-content-center ion-text-center'>
+        <ion-col size="2">Seg</ion-col>
+        <ion-col size="2">Ter</ion-col>
+        <ion-col size="2">Qua</ion-col>
+        <ion-col size="2">Qui</ion-col>
+        <ion-col size="2">Sex</ion-col>
+        <ion-col size="2">Sab</ion-col>
       </ion-row>
-      <ion-row *ngFor="let slot of slots | enumToArray" text-center>
+      <ion-row *ngFor="let slot of slots | enumToArray" class='ion-text-center'>
         <ion-col class="schedule" *ngFor="let day of weekdays| enumToArray" size="2">
-            <ion-item lines="none" *ngIf="scheduleContains(day,slot); else noAppointment; let appointment" color="primary">
-              <ion-label position="inline" class="ion-text-center">{{appointment}}</ion-label>
+            <ion-item lines="none" class="schedule-item ion-align-items-center" *ngIf="scheduleContains(day,slot); else noAppointment; let appointment" color="primary">
+              <ion-label position="inline" class="ion-text-center schedule-label">
+                <p>{{appointment.name}}</p>
+                <p>{{appointment.class}}</p>
+              </ion-label>
             </ion-item>
             <ng-template #noAppointment>
-                <ion-item lines="none" color="light"></ion-item>
+                <ion-item lines="none" class="schedule-item" color="light"></ion-item>
             </ng-template>
         </ion-col>
       </ion-row>
