@@ -1,1 +1,7 @@
-env
+.idea
+db.sqlite3
+__pycache__
+venv
+package-lock.json
+resources
+
