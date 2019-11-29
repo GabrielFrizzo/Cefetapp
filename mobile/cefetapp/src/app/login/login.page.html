@@ -6,33 +6,29 @@
 
 <ion-content padding>
     <form #form="ngForm">
-      <ion-grid>
-        <ion-row justify-content-center>
-          <ion-col align-self-center size-md="6" size-lg="5" size-xs="12">
-            <div text-center>
-              <h3>Login</h3>
-            </div>
-            <div padding>
-              <ion-item>
-                <ion-input name="ra" type="text" placeholder="RA" ngModel required></ion-input>
-              </ion-item>
-              <ion-item>
-                <ion-input name="password" type="password" placeholder="Senha" ngModel required></ion-input>
-              </ion-item>
-            </div>
-            <div padding>
-              <ion-button size="large" [disabled]="form.invalid" expand="block" name="login" value="login" (click)="login(form)">Entrar</ion-button>
-            </div>
-            <div padding>
-                <ion-button size="large" [disabled]="form.invalid" expand="block" name="signup" value="signup" (click)="signup(form)">Cadastrar-se</ion-button>
-              </div>
-          </ion-col>
-        </ion-row>
-      </ion-grid>
-    </form>
+      <ion-card>
+        <ion-card-content>
+          <div padding>
+            <ion-item>
+              <ion-input name="ra" type="text" placeholder="RA" ngModel required></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-input name="password" type="password" placeholder="Senha do portal do aluno" ngModel required></ion-input>
+            </ion-item>
+            <ion-item lines="none">
+              <ion-icon name="help-circle" slot="end"></ion-icon>
+            </ion-item>
+          </div>
+        </ion-card-content>
+      </ion-card>
 
-    <ul>
-      <li>RA: 0 Senha: password - cadastrado no app</li>
-      <li>RA: 1 Senha password - não cadastrado no app, cadastrado no sistema da UT</li>
-    </ul>
+      <div padding>
+        <ion-button shape="round" size="large" [disabled]="form.invalid" expand="block" name="login" value="login" (click)="login(form)">Entrar</ion-button>
+      </div>
+      <div padding>
+        <header>Novo por aqui?</header>
+        <ion-button shape="round" size="large" [disabled]="form.invalid" expand="block" name="signup" value="signup" (click)="signup(form)">Cadastrar-se</ion-button>
+      </div>
+      
+    </form>
   </ion-content>
