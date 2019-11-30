@@ -1,4 +1,7 @@
 from django.contrib import admin
-from .models import User
+from api.models import Subject, Grade, RentedBook
 
-admin.site.register(User)
+
+admin.site.register(Subject)
+admin.site.register(Grade)
+admin.site.register(RentedBook)

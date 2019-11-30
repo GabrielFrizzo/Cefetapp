@@ -1,9 +1,21 @@
 from rest_framework import serializers
 
-from .models import User
+from .models import Subject, Grade, RentedBook
 
 
-class UserSerializer(serializers.HyperlinkedModelSerializer):
+class SubjectSerializer(serializers.ModelSerializer):
     class Meta:
-        model = User
-        fields = ('portal_username', 'ra')
+        model = Subject
+        fields = ('class_times', 'name')
+
+
+class GradeSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Grade
+        fields = ('user', 'subject', 'grade')
+
+
+class RentedBookSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = RentedBook
+        fields = ('user', 'book', 'renewal_count', 'renewal_date')

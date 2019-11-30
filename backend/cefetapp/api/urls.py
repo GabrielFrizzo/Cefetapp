@@ -3,9 +3,12 @@ from rest_framework import routers
 from . import views
 
 router = routers.DefaultRouter()
-router.register('users', views.UserViewSet)
+router.register('subjects', views.SubjectViewSet)
+router.register('grades', views.GradeViewSet, basename='grades')
+router.register('books', views.RentedBookViewSet, basename='books')
 
 urlpatterns = [
     path('', include(router.urls)),
-    path('api-auth/', include('rest_framework.urls', namespace='rest_framework'))
+    path('users/', include('users.urls')),
+    path('rest-auth/', include('rest_auth.urls')),
 ]
