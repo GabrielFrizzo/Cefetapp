@@ -1,4 +1,16 @@
-.hero-item {
-    --background: radial-gradient(farthest-corner ellipse at top left, rgba(100,187,230,1) 0%, rgba(255,255,255,1) 70%) !important;
+#hero-item {
+    --background: url(../assets/bubble1short.svg) no-repeat center/cover;
     --min-height: 10rem;
 }
+/* 
+.bubble1 {
+    --background: url(../assets/bubble1.svg) no-repeat center/cover;
+}
+
+ion-content *{
+    --background: transparent;
+}
+
+ion-list {
+    background: transparent;
+} */

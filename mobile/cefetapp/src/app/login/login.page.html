@@ -5,30 +5,34 @@
 </ion-header>
 
 <ion-content padding>
-    <form #form="ngForm">
-      <ion-card>
-        <ion-card-content>
-          <div padding>
-            <ion-item>
-              <ion-input name="ra" type="text" placeholder="RA" ngModel required></ion-input>
-            </ion-item>
-            <ion-item>
-              <ion-input name="password" type="password" placeholder="Senha do portal do aluno" ngModel required></ion-input>
-            </ion-item>
-            <ion-item lines="none">
-              <ion-icon name="help-circle" slot="end"></ion-icon>
-            </ion-item>
-          </div>
-        </ion-card-content>
-      </ion-card>
-
-      <div padding>
-        <ion-button shape="round" size="large" [disabled]="form.invalid" expand="block" name="login" value="login" (click)="login(form)">Entrar</ion-button>
-      </div>
-      <div padding>
-        <header>Novo por aqui?</header>
-        <ion-button shape="round" size="large" [disabled]="form.invalid" expand="block" name="signup" value="signup" (click)="signup(form)">Cadastrar-se</ion-button>
-      </div>
-      
-    </form>
+    <ion-grid style="height: 100%">
+        <ion-row justify-content-center style="height: 100%; flex-direction: column">
+            <form #form="ngForm">
+                <ion-card>
+                  <ion-card-content>
+                    <div padding>
+                      <ion-item>
+                        <ion-input name="ra" type="text" placeholder="RA" ngModel required></ion-input>
+                      </ion-item>
+                      <ion-item>
+                        <ion-input name="password" type="password" placeholder="Senha do portal do aluno" ngModel required></ion-input>
+                      </ion-item>
+                      <ion-item lines="none">
+                        <ion-icon name="help-circle" slot="end"></ion-icon>
+                      </ion-item>
+                    </div>
+                  </ion-card-content>
+                </ion-card>
+          
+                <div padding>
+                  <ion-button shape="round" size="large" [disabled]="form.invalid" expand="block" name="login" value="login" (click)="login(form)">Entrar</ion-button>
+                </div>
+                <div padding>
+                  <header>Novo por aqui?</header>
+                  <ion-button shape="round" size="large" [disabled]="form.invalid" expand="block" name="signup" value="signup" (click)="signup(form)">Cadastrar-se</ion-button>
+                </div>
+                
+              </form>
+        </ion-row>
+    </ion-grid>
   </ion-content>
