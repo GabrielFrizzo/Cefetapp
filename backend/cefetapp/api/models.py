@@ -1,15 +1,5 @@
 from django.db import models
-
-
-class User(models.Model):
-    name = models.CharField(max_length=80)
-    portal_username = models.CharField(max_length=80)
-    portal_password = models.CharField(max_length=80)
-    ra = models.CharField(max_length=10)
-    pergamum_password = models.CharField(max_length=80)
-
-    def __str__(self):
-        return self.name
+from users.models import CefetUser
 
 
 class Subject(models.Model):
@@ -21,7 +11,7 @@ class Subject(models.Model):
 
 
 class Grade(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(CefetUser, on_delete=models.CASCADE)
     subject = models.ForeignKey(Subject, on_delete=models.CASCADE)
     grade = models.FloatField()
 
@@ -30,7 +20,7 @@ class Grade(models.Model):
 
 
 class UserConfig(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(CefetUser, on_delete=models.CASCADE)
 
     config_name = models.CharField(max_length=80)
     config_value = models.CharField(max_length=80)
@@ -40,7 +30,7 @@ class UserConfig(models.Model):
 
 
 class RentedBook(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(CefetUser, on_delete=models.CASCADE)
 
     book = models.CharField(max_length=80)
     renewal_count = models.IntegerField()
