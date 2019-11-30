@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1125" height="934" viewBox="0 0 1125 934">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #66bae8;
+        stroke: #000;
+        stroke-width: 1px;
+        fill-rule: evenodd;
+      }
+    </style>
+  </defs>
+  <g id="Artboard_1" data-name="Artboard 1">
+    <path class="cls-1" d="M441.685-779.9C980.826-805.482,1417.89-481.928,1417.89-57.221S980.826,732.518,441.685,758.1s-976.2-297.971-976.2-722.678S-97.455-754.316,441.685-779.9Z"/>
+  </g>
+</svg>
