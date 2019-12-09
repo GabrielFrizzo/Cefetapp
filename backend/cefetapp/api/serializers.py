@@ -1,6 +1,6 @@
 from rest_framework import serializers
 
-from .models import Subject, Grade, RentedBook
+from .models import Subject, Grade, RentedBook, GradeHistory
 
 
 class SubjectSerializer(serializers.ModelSerializer):
@@ -13,6 +13,12 @@ class GradeSerializer(serializers.ModelSerializer):
     class Meta:
         model = Grade
         fields = ('user', 'subject', 'grade')
+
+
+class GradeHistorySerializer(serializers.ModelSerializer):
+    class Meta:
+        model = GradeHistory
+        fields = ('user', 'grade', 'semester')
 
 
 class RentedBookSerializer(serializers.ModelSerializer):

@@ -16,7 +16,7 @@ class Grade(models.Model):
     grade = models.FloatField()
 
     def __str__(self):
-        return str(self.grade)
+        return "{} -> {}".format(self.subject, str(self.grade))
 
 
 class UserConfig(models.Model):
@@ -38,3 +38,10 @@ class RentedBook(models.Model):
 
     def __str__(self):
         return self.book
+
+
+class GradeHistory(models.Model):
+    user = models.ForeignKey(CefetUser, on_delete=models.CASCADE)
+    grade = models.ForeignKey(Grade, on_delete=models.CASCADE)
+
+    semester = models.CharField(max_length=10)
