@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from  "@angular/router";
+import { Router } from '@angular/router';
 import { ToastController } from '@ionic/angular';
+import { ApiDjangoService } from '../services/api-django.service';
 
 @Component({
   selector: 'app-login',
@@ -9,20 +10,23 @@ import { ToastController } from '@ionic/angular';
 })
 export class LoginPage implements OnInit {
 
-  constructor(private  router:  Router, public toastController: ToastController) { }
+  constructor(private router: Router,
+              public toastController: ToastController,
+              private authService: ApiDjangoService) { }
 
   ngOnInit() {
   }
 
   login(form){
-    //this.authService.login(form.value).subscribe((res)=>{
-    //  this.router.navigateByUrl('home');
-    //});
-    if (form.value.ra === "0" && form.value.password === "password") {//password handling top
+    console.log('logando');
+    this.authService.login(form.value).subscribe((res) => {
       this.router.navigateByUrl('home');
-    } else {
-      this.presentToast('Dados não cadastrados. Selecione a opção Cadastrar-se');
-    }    
+    });
+    // if (form.value.ra === "0" && form.value.password === "password") {//password handling top
+    //   this.router.navigateByUrl('home');
+    // } else {
+    //   this.presentToast('Dados não cadastrados. Selecione a opção Cadastrar-se');
+    // }    
   }
 
   signup(form){
@@ -33,12 +37,12 @@ export class LoginPage implements OnInit {
       this.router.navigateByUrl('home');
     } else {
       this.presentToast('Usuário não cadastrado no Portal do Aluno');
-    }    
+    }
   }
 
   async presentToast(message) {
     const toast = await this.toastController.create({
-      message: message,
+      message,
       duration: 2000
     });
     toast.present();
