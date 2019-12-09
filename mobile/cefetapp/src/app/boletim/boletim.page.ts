@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Boletim } from './boletim';
+import { ApiDjangoService } from '../services/api-django.service';
 
 @Component({
   selector: 'app-boletim',
@@ -6,13 +8,22 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./boletim.page.scss'],
 })
 export class BoletimPage implements OnInit {
+  report_card: any;
 
-  constructor() { }
+  constructor(private service: ApiDjangoService) { }
 
   ngOnInit() {
   }
 
-  public report_card = [
-    { name: 'CSG20-S71', freq: 90.3 , grade: 0}
-  ]
+  ionViewDidEnter() {
+    this.report_card = [];
+    this.get_boletim();
+  }
+
+  get_boletim() {
+    this.service.get_boletim()
+      .then((result: any) => {
+        this.report_card = result;
+      });
+  }
 }
