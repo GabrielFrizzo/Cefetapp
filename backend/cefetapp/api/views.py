@@ -1,10 +1,8 @@
+from django.contrib.auth.decorators import login_required
 from rest_framework import viewsets
 
-from .serializers import SubjectSerializer, GradeSerializer, RentedBookSerializer
+from .serializers import SubjectSerializer, GradeSerializer, RentedBookSerializer, GradeHistorySerializer
 from .models import Subject, Grade, RentedBook
-
-
-
 
 
 class SubjectViewSet(viewsets.ReadOnlyModelViewSet):
@@ -17,6 +15,13 @@ class GradeViewSet(viewsets.ReadOnlyModelViewSet):
 
     def get_queryset(self):
         return self.request.user.grade_set.all()
+
+
+class GradeHistoryViewSet(viewsets.ReadOnlyModelViewSet):
+    serializer_class = GradeHistorySerializer
+
+    def get_queryset(self):
+        return self.request.user.gradehistory_set.all()
 
 
 class RentedBookViewSet(viewsets.ReadOnlyModelViewSet):
