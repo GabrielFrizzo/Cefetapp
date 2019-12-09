@@ -14,7 +14,20 @@ class GradeViewSet(viewsets.ReadOnlyModelViewSet):
     serializer_class = GradeSerializer
 
     def get_queryset(self):
-        return self.request.user.grade_set.all()
+        if self.request.user.is_authenticated:
+            return self.request.user.grade_set.all()
+        else:
+            return []
+
+
+class GradeHistoryViewSet(viewsets.ReadOnlyModelViewSet):
+    serializer_class = GradeHistorySerializer
+
+    def get_queryset(self):
+        if self.request.user.is_authenticated:
+            return self.request.user.gradehistory_set.all()
+        else:
+            return []
 
 
 class GradeHistoryViewSet(viewsets.ReadOnlyModelViewSet):
@@ -28,5 +41,8 @@ class RentedBookViewSet(viewsets.ReadOnlyModelViewSet):
     serializer_class = RentedBookSerializer
 
     def get_queryset(self):
-        return self.request.user.rentedbook_set.all()
+        if self.request.user.is_authenticated:
+            return self.request.user.rentedbook_set.all()
+        else:
+            return []
 
