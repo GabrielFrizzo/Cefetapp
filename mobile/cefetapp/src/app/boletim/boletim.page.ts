@@ -26,10 +26,10 @@ export class BoletimPage implements OnInit {
         this.service.get_disciplinas_matriculadas()
           .then((subjects: any) => {   
             this.report_card = result;
-            this.report_card.forEach(element => {              
-              element.subject = subjects[element.subject-1].name
-            });      
-          });        
+            // this.report_card.forEach(element => {
+            //   element.subject = subjects[element.subject-1].name
+            // });
+          });
       });
   }
 }

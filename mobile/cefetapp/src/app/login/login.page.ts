@@ -29,7 +29,7 @@ export class LoginPage implements OnInit {
     // }    
   }
 
-  logout(){
+  logout() {
     console.log('deslogando');
     this.authService.logout();
   }
