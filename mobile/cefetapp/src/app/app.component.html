@@ -1,6 +1,6 @@
 <ion-app>
-  <ion-split-pane>
-    <ion-menu type="overlay" swipeGesture >
+  <ion-split-pane contentId="main-content">
+    <ion-menu type="overlay" swipeGesture contentId="main-content">
       <ion-header>
         <ion-toolbar>
           <ion-title>Menu</ion-title>
@@ -30,6 +30,6 @@
         </ion-toolbar>
       </ion-footer>
     </ion-menu>
-    <ion-router-outlet main></ion-router-outlet>
+    <ion-router-outlet id="main-content"></ion-router-outlet>
   </ion-split-pane>
 </ion-app>
