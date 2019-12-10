@@ -16,16 +16,17 @@
     <ion-card color='primary' *ngFor='let subject of subjects'>
         <ion-card-header>
           <ion-card-title>{{ subject.name }}</ion-card-title>
-          <ion-card-subtitle>{{ subject.code }}-{{ subject.class }}</ion-card-subtitle>
+          <!-- <ion-card-subtitle>{{ subject.code }}-{{ subject.class }}</ion-card-subtitle> -->
         </ion-card-header>
         
         <ion-card-content>
+          <!--
           <ion-item color='primary' lines='none'>
             <ion-badge color='dark' class='room-badge' slot='end'>{{ subject.room }}</ion-badge>
           </ion-item>
-        
+          -->
         <ion-badge color='dark'>
-          <p *ngFor='let time of subject.times'>{{ time.day }}: {{ time.start }} - {{ time.end }}</p>
+          <p *ngFor='let class_times of subject.class_times'>{{ class_times.day }}: {{ class_times.start }} - {{ class_times.end }}</p>
         </ion-badge>
       </ion-card-content>        
     </ion-card>

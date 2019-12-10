@@ -26,7 +26,7 @@
       </ion-content>
       <ion-footer no-border>
         <ion-toolbar>
-          <ion-button shape="round">Sair</ion-button>
+          <ion-button shape="round" [routerDirection]="'root'" [routerLink]="'/logout'" (action)="logout()">Sair</ion-button>
         </ion-toolbar>
       </ion-footer>
     </ion-menu>

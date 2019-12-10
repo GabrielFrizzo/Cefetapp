@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ApiDjangoService } from '../services/api-django.service';
 
 @Component({
   selector: 'app-disciplinas-matriculadas',
@@ -6,20 +7,27 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./disciplinas-matriculadas.page.scss'],
 })
 export class DisciplinasMatriculadasPage implements OnInit {
-  public subjects = [
-    { code: 'CSG20', name: 'Análise E Projeto De Sistemas', room: 'B-107', class: 'S71',
-      times: [{day: 'seg', start: '13:50', end: '15:30'},
-              {day: 'qui', start: '10:20', end: '12:50'},
-             ]},
-    { code: 'ECG47', name: 'Projeto e Sistemas De Análise', room: 'Q-301', class: 'S11',
-      times: [{day: 'qua', start: '15:50', end: '19:30'}]},
-    { code: 'CSG20', name: 'Sistema de Projetos e Análises', room: 'E-209', class: 'S73',
-      times: [{day: 'sex', start: '09:10', end: '12:00'}]},
-  ];
+  subjects: any
 
-  constructor() { }
+  constructor(private service: ApiDjangoService) { }
 
   ngOnInit() {
+  }
+
+  ionViewDidEnter() {
+    this.subjects = [];
+    this.get_disciplinas_matriculadas();
+  }
+
+  get_disciplinas_matriculadas() {
+    this.service.get_disciplinas_matriculadas()
+      .then((result: any) => {
+        this.subjects = result;
+        this.subjects.forEach(element => {
+          element.class_times = JSON.parse(element.class_times)
+        });
+        console.log(this.subjects)
+      });
   }
 
 }
