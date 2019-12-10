@@ -94,4 +94,26 @@ export class ApiDjangoService {
       });
     });
   }
+
+  get_historico() {
+    return new Promise((resolve, reject) => {
+      this.storage.get('ACCESS_TOKEN').then((token) => {
+        this.http.get(`${this.SERVER_ADRESS}${this.url}grade_history`,
+                         { headers: {
+                            Authorization: `Token ${token}`
+                           }
+                         }).subscribe((result: any) => {
+                           console.log('sem erro');
+                           resolve(result);
+                         },
+                         (error) => {
+                           console.log(error);
+                           reject(error.json);
+                         });
+      });
+    });
+  }
 }
+
+
+

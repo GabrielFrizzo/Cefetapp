@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ApiDjangoService } from '../services/api-django.service';
 
 @Component({
   selector: 'app-historico',
@@ -6,16 +7,24 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./historico.page.scss'],
 })
 export class HistoricoPage implements OnInit {
-  public record = [
-    {term: 1, code: 'CSF13', name: 'Fundamentos De Programação 1', class: 'S71', grade: 9.6, freq: 97.4},
-    {term: 2, code: 'CSE20', name: 'Técnicas De Programação', class: 'S71', grade: 5.2, freq: 67.1},
-    {term: 9, code: 'CSA38', name: 'Protelação de Entregas 3', class: 'S71', grade: 6.8, freq: 94.1},
-    {term: 6, code: 'CSR21', name: 'Trancamento de Curso 2', class: 'S71', grade: 7.3, freq: 92.1},
-    {term: 8, code: 'BQE44', name: 'Frequência 0', class: 'S19', grade: 10, freq: 0},
-  ];
+  record: any
 
-  constructor() { }
+  constructor(private service: ApiDjangoService) { }
 
   ngOnInit() {
+  }
+
+  ionViewDidEnter() {
+    this.record = [];
+    this.get_historico();
+  }
+
+  get_historico() {
+    this.service.get_historico()
+      .then((result: any) => {
+        result.forEach(element => {              
+          this.record.push({name: element.grade.subject, grade: element.grade.grade, semester:element.semester})
+        });   
+      });
   }
 }
