@@ -29,7 +29,7 @@
             <ion-item lines="none" class="schedule-item ion-align-items-center" *ngIf="scheduleContains(day,slot); else noAppointment; let appointment" color="primary">
               <ion-label position="inline" class="ion-text-center schedule-label">
                 <p>{{appointment.name}}</p>
-                <p>{{appointment.class}}</p>
+                <!-- <p>{{appointment.class}}</p> -->
               </ion-label>
             </ion-item>
             <ng-template #noAppointment>
