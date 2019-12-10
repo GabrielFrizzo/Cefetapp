@@ -4,15 +4,15 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content padding>
+<ion-content class="ion-padding">
     <ion-grid style="height: 100%">
-        <ion-row justify-content-center style="height: 100%; flex-direction: column">
+        <ion-row class="ion-justify-content-center" style="height: 100%; flex-direction: column">
             <form #form="ngForm">
                 <ion-card>
                   <ion-card-content>
-                    <div padding>
+                    <div class="ion-padding">
                       <ion-item>
-                        <ion-input name="username" type="text" placeholder="RA" ngModel required></ion-input>
+                        <ion-input name="username" type="text" placeholder="Usuário do portal do aluno" ngModel required></ion-input>
                       </ion-item>
                       <ion-item>
                         <ion-input name="password" type="password" placeholder="Senha do portal do aluno" ngModel required></ion-input>
@@ -24,10 +24,10 @@
                   </ion-card-content>
                 </ion-card>
           
-                <div padding>
+                <div class="ion-padding">
                   <ion-button shape="round" size="large" [disabled]="form.invalid" expand="block" name="login" value="login" (click)="login(form)">Entrar</ion-button>
                 </div>
-                <div padding>
+                <div class="ion-padding">
                   <header>Novo por aqui?</header>
                   <ion-button shape="round" size="large" [disabled]="form.invalid" expand="block" name="signup" value="signup" (click)="signup(form)">Cadastrar-se</ion-button>
                 </div>

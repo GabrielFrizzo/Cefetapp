@@ -10,12 +10,14 @@ class SubjectSerializer(serializers.ModelSerializer):
 
 
 class GradeSerializer(serializers.ModelSerializer):
+    subject = serializers.SlugRelatedField(read_only=True, slug_field='name')
     class Meta:
         model = Grade
         fields = ('user', 'subject', 'grade')
 
 
 class GradeHistorySerializer(serializers.ModelSerializer):
+    grade = GradeSerializer(read_only=True)
     class Meta:
         model = GradeHistory
         fields = ('user', 'grade', 'semester')
