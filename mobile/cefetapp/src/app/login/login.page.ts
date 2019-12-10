@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ToastController } from '@ionic/angular';
 import { ApiDjangoService } from '../services/api-django.service';
+import {  MenuController } from '@ionic/angular';
 
 @Component({
   selector: 'app-login',
@@ -12,9 +13,18 @@ export class LoginPage implements OnInit {
 
   constructor(private router: Router,
               public toastController: ToastController,
-              private authService: ApiDjangoService) { }
+              private authService: ApiDjangoService,
+              private menuController: MenuController) { }
 
   ngOnInit() {
+  }
+
+  ionViewWillEnter() {
+    this.menuController.enable(false);
+  }
+  
+  ionViewWillLeave() {
+    this.menuController.enable(true);
   }
 
   login(form){
