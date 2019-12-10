@@ -3,6 +3,7 @@ import { Component } from '@angular/core';
 import { Platform } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
+import { ApiDjangoService } from './services/api-django.service';
 
 @Component({
   selector: 'app-root',
@@ -41,9 +42,16 @@ export class AppComponent {
   constructor(
     private platform: Platform,
     private splashScreen: SplashScreen,
-    private statusBar: StatusBar
+    private statusBar: StatusBar,
+    private authService: ApiDjangoService,
   ) {
     this.initializeApp();
+  }
+
+  logout() {
+    console.log('deslogando');
+    this.authService.logout();
+    console.log('deslogado');
   }
 
   initializeApp() {
