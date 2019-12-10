@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ApiDjangoService } from '../services/api-django.service';
 
 @Component({
   selector: 'app-biblioteca',
@@ -7,17 +8,24 @@ import { Component, OnInit } from '@angular/core';
 })
 export class BibliotecaPage implements OnInit {
 
-  public books = [
-    { title: 'A volta dos que não foram', author: 'Aluísio de Azevedo', renewals: 2 },
-    { title: 'Percy Jackson', author: 'Karl Marx', renewals: 1 },
-    { title: 'Física 7', author: 'Rafael Barreto', renewals: 3 },
-    { title: 'Matemática Introdutória', author: 'Desconhecido', renewals: 3 },
-    { title: 'Ionic Para Iniciantes', author: 'Mateus Freitas', renewals: 0 },
-  ];
+  books: any
 
-  constructor() { }
+  constructor(private service: ApiDjangoService) { }
 
   ngOnInit() {
+  }
+
+  ionViewDidEnter() {
+    this.books = [];
+    this.get_biblioteca();
+  }
+
+  get_biblioteca() {
+    this.service.get_biblioteca()
+      .then((result: any) => {
+        this.books = result;
+        console.log(this.books)
+      });
   }
 
 }
