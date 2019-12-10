@@ -30,14 +30,7 @@ class GradeHistoryViewSet(viewsets.ReadOnlyModelViewSet):
             return []
 
 
-class GradeHistoryViewSet(viewsets.ReadOnlyModelViewSet):
-    serializer_class = GradeHistorySerializer
-
-    def get_queryset(self):
-        return self.request.user.gradehistory_set.all()
-
-
-class RentedBookViewSet(viewsets.ReadOnlyModelViewSet):
+class RentedBookViewSet(viewsets.ModelViewSet):
     serializer_class = RentedBookSerializer
 
     def get_queryset(self):
