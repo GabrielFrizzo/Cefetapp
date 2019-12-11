@@ -30,7 +30,7 @@ class UserConfig(models.Model):
 
 
 class RentedBook(models.Model):
-    user = models.ForeignKey(CefetUser, on_delete=models.CASCADE)
+    user = models.ForeignKey(CefetUser, null=True, blank=True, on_delete=models.CASCADE)
 
     book = models.CharField(max_length=80)
     renewal_count = models.IntegerField()
