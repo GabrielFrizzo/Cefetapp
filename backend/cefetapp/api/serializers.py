@@ -1,6 +1,6 @@
 from rest_framework import serializers
 
-from .models import Subject, Grade, RentedBook, GradeHistory
+from .models import Subject, Grade, RentedBook, GradeHistory, UserConfig
 
 
 class SubjectSerializer(serializers.ModelSerializer):
@@ -27,3 +27,8 @@ class RentedBookSerializer(serializers.ModelSerializer):
     class Meta:
         model = RentedBook
         fields = ('user', 'book', 'renewal_count', 'renewal_date')
+
+class UserConfigSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = UserConfig
+        fields = ('user', 'config_name', 'config_value')

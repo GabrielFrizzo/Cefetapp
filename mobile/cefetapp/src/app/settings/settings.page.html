@@ -14,7 +14,7 @@
           <div class="padding">
             <ion-item>
               <ion-label class="ion-text-wrap">Receber notificações de aulas?</ion-label>
-              <ion-select value="15" interface="popover">
+              <ion-select value="15" interface="popover" (ionChange)="notificationChange($event)">
                 <ion-select-option value="15">15 min</ion-select-option>
                 <ion-select-option value="30">30 min</ion-select-option>
                 <ion-select-option value="60">60 min</ion-select-option>
