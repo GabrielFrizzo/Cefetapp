@@ -29,7 +29,7 @@ export class LoginPage implements OnInit {
 
   login(form){
     console.log('logando');
-    this.authService.login(form.value).subscribe((res: AuthResponse) => {
+    this.authService.login(form.value).subscribe((res) => {
       this.router.navigateByUrl('home');
     }, (err) => {
       this.presentToast('Dados não cadastrados. Selecione a opção Cadastrar-se');
