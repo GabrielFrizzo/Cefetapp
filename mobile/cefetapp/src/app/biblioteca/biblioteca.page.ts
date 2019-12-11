@@ -24,7 +24,6 @@ export class BibliotecaPage implements OnInit {
     this.service.get_biblioteca()
       .then((result: any) => {
         this.books = result;
-        console.log(this.books)
       });
   }
 

@@ -60,13 +60,19 @@ export class ApiDjangoService {
   get_disciplinas_matriculadas() {
     return new Promise((resolve, reject) => {
       this.storage.get('ACCESS_TOKEN').then((token) => {
-        this.http.get(`${this.SERVER_ADRESS}${this.url}subjects`,
+        this.http.get(`${this.SERVER_ADRESS}${this.url}grade_history`,
                          { headers: {
                             Authorization: `Token ${token}`
                            }
                          }).subscribe((result: any) => {
                            console.log('sem erro');
-                           resolve(result);
+                           var atuais = []
+                           result.forEach(element => {
+                             if (element.semester == "2019/2") {
+                               atuais.push(element)
+                             }
+                           });
+                           resolve(atuais);
                          },
                          (error) => {
                            console.log(error);
@@ -114,6 +120,5 @@ export class ApiDjangoService {
     });
   }
 }
-
 
 

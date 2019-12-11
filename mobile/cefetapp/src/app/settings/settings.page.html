@@ -9,16 +9,16 @@
 
 <ion-content>
   <ion-grid>
-      <ion-row justify-content-center>
+      <ion-row class="ion-justify-content-center">
         <ion-col>
-          <div padding>
+          <div class="padding">
             <ion-item>
-              <ion-label>Gostaria de receber notificação quando sua aula estiver prestes a iniciar?</ion-label>
-              <ion-select interface="popover">
-                <ion-select-option value="15">Sim, 15 min antes</ion-select-option>
-                <ion-select-option value="30">Sim, 30 min antes</ion-select-option>
-                <ion-select-option value="30">Sim, 60 min antes</ion-select-option>
-                <ion-select-option value="Não">Não quero receber notificações</ion-select-option>
+              <ion-label class="ion-text-wrap">Receber notificações de aulas?</ion-label>
+              <ion-select value="15" interface="popover">
+                <ion-select-option value="15">15 min</ion-select-option>
+                <ion-select-option value="30">30 min</ion-select-option>
+                <ion-select-option value="60">60 min</ion-select-option>
+                <ion-select-option value="Não">Não</ion-select-option>
               </ion-select>
             </ion-item>
           </div>
