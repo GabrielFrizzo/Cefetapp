@@ -1,8 +1,8 @@
 from django.contrib.auth.decorators import login_required
 from rest_framework import viewsets
 
-from .serializers import SubjectSerializer, GradeSerializer, RentedBookSerializer, GradeHistorySerializer
-from .models import Subject, Grade, RentedBook
+from .serializers import SubjectSerializer, GradeSerializer, RentedBookSerializer, GradeHistorySerializer, UserConfigSerializer
+from .models import Subject, Grade, RentedBook, UserConfig
 
 
 class SubjectViewSet(viewsets.ReadOnlyModelViewSet):
@@ -39,3 +39,11 @@ class RentedBookViewSet(viewsets.ModelViewSet):
         else:
             return []
 
+class UserConfigViewSet(viewsets.ModelViewSet):
+    serializer_class = UserConfigSerializer
+
+    def get_queryset(self):
+        if self.request.user.is_authenticated:
+            return self.request.user.userconfig_set.all()
+        else:
+            return []
