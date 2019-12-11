@@ -39,11 +39,6 @@ export class LoginPage implements OnInit {
     // }    
   }
 
-  logout() {
-    console.log('deslogando');
-    this.authService.logout();
-  }
-
   signup(form){
     //this.authService.register(form.value).subscribe((res) => {
     //   this.router.navigateByUrl('home');
