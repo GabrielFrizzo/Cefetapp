@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiDjangoService } from '../services/api-django.service';
+import { Livro } from './livro';
 
 @Component({
   selector: 'app-biblioteca',
@@ -22,8 +23,15 @@ export class BibliotecaPage implements OnInit {
 
   get_biblioteca() {
     this.service.get_biblioteca()
-      .then((result: any) => {
+      .then((result: [Livro]) => {
         this.books = result;
+      });
+  }
+
+  renew_book(book: Livro) {
+    this.service.renew_book(book.id)
+      .then((result: any) => {
+        console.log('renovou!');
       });
   }
 

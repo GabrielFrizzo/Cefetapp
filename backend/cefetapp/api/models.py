@@ -39,6 +39,13 @@ class RentedBook(models.Model):
     def __str__(self):
         return self.book
 
+    def renew(self):
+        if self.renewal_count < 3:
+            self.renewal_count += 1
+            self.save()
+            return True
+        return False
+
 
 class GradeHistory(models.Model):
     user = models.ForeignKey(CefetUser, on_delete=models.CASCADE)

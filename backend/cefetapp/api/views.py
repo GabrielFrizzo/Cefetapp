@@ -1,5 +1,7 @@
 from django.contrib.auth.decorators import login_required
 from rest_framework import viewsets
+from rest_framework.decorators import action
+from rest_framework.response import Response
 
 from .serializers import SubjectSerializer, GradeSerializer, RentedBookSerializer, GradeHistorySerializer, UserConfigSerializer
 from .models import Subject, Grade, RentedBook, UserConfig
@@ -38,6 +40,17 @@ class RentedBookViewSet(viewsets.ModelViewSet):
             return self.request.user.rentedbook_set.all()
         else:
             return []
+
+    @action(detail=True, methods=['post'])
+    def renew(self, request, pk):
+        book = RentedBook.objects.get(pk=pk)
+        if book:
+            if book.renew():
+                return Response({'status': 'SUCESSO', 'renovacoes': book.renewal_count})
+            return Response({'status': 'ERRO', 'mensagem': 'Limite de renovações atingido'})
+
+        return Response({'status': 'ERRO', 'mensagem': 'Falha ao renovar o livro'})
+
 
 class UserConfigViewSet(viewsets.ModelViewSet):
     serializer_class = UserConfigSerializer
