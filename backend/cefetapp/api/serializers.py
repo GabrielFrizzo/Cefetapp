@@ -11,6 +11,7 @@ class SubjectSerializer(serializers.ModelSerializer):
 
 class GradeSerializer(serializers.ModelSerializer):
     subject = serializers.SlugRelatedField(read_only=True, slug_field='name')
+
     class Meta:
         model = Grade
         fields = ('user', 'subject', 'grade')
@@ -18,6 +19,7 @@ class GradeSerializer(serializers.ModelSerializer):
 
 class GradeHistorySerializer(serializers.ModelSerializer):
     grade = GradeSerializer(read_only=True)
+
     class Meta:
         model = GradeHistory
         fields = ('user', 'grade', 'semester')
@@ -26,4 +28,4 @@ class GradeHistorySerializer(serializers.ModelSerializer):
 class RentedBookSerializer(serializers.ModelSerializer):
     class Meta:
         model = RentedBook
-        fields = ('user', 'book', 'renewal_count', 'renewal_date')
+        fields = ('id', 'user', 'book', 'renewal_count', 'renewal_date')
