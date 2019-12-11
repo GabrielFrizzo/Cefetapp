@@ -29,6 +29,7 @@ class UserConfig(models.Model):
         return self.config_name + '->' + self.config_value
 
 
+
 class RentedBook(models.Model):
     user = models.ForeignKey(CefetUser, on_delete=models.CASCADE)
 
