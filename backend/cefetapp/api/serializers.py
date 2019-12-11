@@ -10,7 +10,7 @@ class SubjectSerializer(serializers.ModelSerializer):
 
 
 class GradeSerializer(serializers.ModelSerializer):
-    subject = serializers.SlugRelatedField(read_only=True, slug_field='name')
+    subject = SubjectSerializer(read_only=True)
     class Meta:
         model = Grade
         fields = ('user', 'subject', 'grade')
