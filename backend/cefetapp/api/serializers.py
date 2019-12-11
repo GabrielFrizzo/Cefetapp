@@ -33,5 +33,5 @@ class RentedBookSerializer(serializers.ModelSerializer):
 class UserConfigSerializer(serializers.ModelSerializer):
     class Meta:
         model = UserConfig
-        fields = ('user', 'config_name', 'config_value')
+        fields = ('id', 'user', 'config_name', 'config_value')
 

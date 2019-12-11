@@ -28,6 +28,14 @@ class UserConfig(models.Model):
     def __str__(self):
         return self.config_name + '->' + self.config_value
 
+    def update_config(self, config_name, config_value):
+        if config_name == "Notification" and config_value in ["15", "30", "60", "Não"]:
+            self.config_name = config_name
+            self.config_value = config_value
+            self.save()
+            return True
+        return False
+
 
 class RentedBook(models.Model):
     user = models.ForeignKey(CefetUser, null=True, blank=True, on_delete=models.CASCADE)
