@@ -68,7 +68,7 @@ export class ApiDjangoService {
                            console.log('sem erro');
                            var atuais = []
                            result.forEach(element => {
-                             if (element.semester == "2010/3") {
+                             if (element.semester == "2019/2") {
                                atuais.push(element)
                              }
                            });
@@ -120,6 +120,5 @@ export class ApiDjangoService {
     });
   }
 }
-
 
 
