@@ -23,7 +23,9 @@ export class BoletimPage implements OnInit {
   get_boletim() {
     this.service.get_boletim()
       .then((result: any) => {
-        this.report_card = result
+        result.forEach(element => {
+          this.report_card.push({subject: element.subject.name, grade: element.grade})
+        });
       });
   }
 }

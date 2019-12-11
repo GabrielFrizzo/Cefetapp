@@ -22,10 +22,10 @@ export class DisciplinasMatriculadasPage implements OnInit {
   get_disciplinas_matriculadas() {
     this.service.get_disciplinas_matriculadas()
       .then((result: any) => {
-        this.subjects = result;
-        this.subjects.forEach(element => {
-          element.class_times = JSON.parse(element.class_times)
+        result.forEach(element => {
+          this.subjects.push({name: element.grade.subject.name, class_times: JSON.parse(element.grade.subject.class_times)})
         });
+        console.log(this.subjects)
       });
   }
 
