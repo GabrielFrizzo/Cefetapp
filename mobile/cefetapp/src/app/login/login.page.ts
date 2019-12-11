@@ -29,19 +29,11 @@ export class LoginPage implements OnInit {
 
   login(form){
     console.log('logando');
-    this.authService.login(form.value).subscribe((res) => {
+    this.authService.login(form.value).subscribe((res: AuthResponse) => {
       this.router.navigateByUrl('home');
-    });
-    // if (form.value.ra === "0" && form.value.password === "password") {//password handling top
-    //   this.router.navigateByUrl('home');
-    // } else {
-    //   this.presentToast('Dados não cadastrados. Selecione a opção Cadastrar-se');
-    // }    
-  }
-
-  logout() {
-    console.log('deslogando');
-    this.authService.logout();
+    }, (err) => {
+      this.presentToast('Dados não cadastrados. Selecione a opção Cadastrar-se');
+    })
   }
 
   signup(form){

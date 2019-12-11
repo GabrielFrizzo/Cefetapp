@@ -23,7 +23,7 @@ export class HistoricoPage implements OnInit {
     this.service.get_historico()
       .then((result: any) => {
         result.forEach(element => {              
-          this.record.push({name: element.grade.subject, grade: element.grade.grade, semester:element.semester})
+          this.record.push({name: element.grade.subject.name, grade: element.grade.grade, semester:element.semester})
         });   
       });
   }

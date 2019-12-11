@@ -40,9 +40,9 @@ export class HomePage {
       .then((result: any) => {
         var subjects = result;
         subjects.forEach(element => {
-          element.class_times = JSON.parse(element.class_times)
-          element.class_times.forEach(class_time => {
-            this.schedule.push({name: element.name, day: this.stringToWeekday(class_time.day), slot: this.timeToSlot(class_time.start)})            
+          element.grade.subject.class_times = JSON.parse(element.grade.subject.class_times)
+          element.grade.subject.class_times.forEach(class_time => {
+            this.schedule.push({name: element.grade.subject.name, day: this.stringToWeekday(class_time.day), slot: this.timeToSlot(class_time.start)})            
           });
         });
         

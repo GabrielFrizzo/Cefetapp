@@ -25,12 +25,10 @@ export class BibliotecaPage implements OnInit {
     this.service.get_biblioteca()
       .then((result: [Livro]) => {
         this.books = result;
-        console.log(this.books);
       });
   }
 
   renew_book(book: Livro) {
-    console.log('entrou');
     this.service.renew_book(book.id)
       .then((result: any) => {
         console.log('renovou!');

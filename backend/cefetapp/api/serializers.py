@@ -1,6 +1,6 @@
 from rest_framework import serializers
 
-from .models import Subject, Grade, RentedBook, GradeHistory
+from .models import Subject, Grade, RentedBook, GradeHistory, UserConfig
 
 
 class SubjectSerializer(serializers.ModelSerializer):
@@ -10,8 +10,7 @@ class SubjectSerializer(serializers.ModelSerializer):
 
 
 class GradeSerializer(serializers.ModelSerializer):
-    subject = serializers.SlugRelatedField(read_only=True, slug_field='name')
-
+    subject = SubjectSerializer(read_only=True)
     class Meta:
         model = Grade
         fields = ('user', 'subject', 'grade')
@@ -29,3 +28,10 @@ class RentedBookSerializer(serializers.ModelSerializer):
     class Meta:
         model = RentedBook
         fields = ('id', 'user', 'book', 'renewal_count', 'renewal_date')
+
+
+class UserConfigSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = UserConfig
+        fields = ('user', 'config_name', 'config_value')
+

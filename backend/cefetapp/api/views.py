@@ -3,8 +3,8 @@ from rest_framework import viewsets
 from rest_framework.decorators import action
 from rest_framework.response import Response
 
-from .serializers import SubjectSerializer, GradeSerializer, RentedBookSerializer, GradeHistorySerializer
-from .models import Subject, Grade, RentedBook
+from .serializers import SubjectSerializer, GradeSerializer, RentedBookSerializer, GradeHistorySerializer, UserConfigSerializer
+from .models import Subject, Grade, RentedBook, UserConfig
 
 
 class SubjectViewSet(viewsets.ReadOnlyModelViewSet):
@@ -51,3 +51,12 @@ class RentedBookViewSet(viewsets.ModelViewSet):
 
         return Response({'status': 'ERRO', 'mensagem': 'Falha ao renovar o livro'})
 
+
+class UserConfigViewSet(viewsets.ModelViewSet):
+    serializer_class = UserConfigSerializer
+
+    def get_queryset(self):
+        if self.request.user.is_authenticated:
+            return self.request.user.userconfig_set.all()
+        else:
+            return []
