@@ -6,11 +6,11 @@ from users.models import CefetUser
 class CefetUserCreationForm(UserCreationForm):
     class Meta:
         model = CefetUser
-        fields = ('name', 'portal_username', 'portal_password', 'ra', 'pergamum_password')
+        fields = ('email','name', 'portal_username', 'portal_password', 'ra', 'pergamum_password')
 
 
 class CefetUserChangeForm(UserChangeForm):
     class Meta:
         model = CefetUser
-        fields = ['name', 'portal_username', 'portal_password', 'ra', 'pergamum_password']
+        fields = UserChangeForm.Meta.fields
 
