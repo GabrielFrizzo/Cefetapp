@@ -71,3 +71,14 @@ class UserConfigViewSet(viewsets.ModelViewSet):
             return self.request.user.userconfig_set.all()
         else:
             return []
+
+    @action(detail=True, methods=['post'])
+    def update_config(self, request, pk):
+        config = UserConfig.objects.get(pk=pk)
+        if config:
+            if config.update_config(request.data['config_name'],request.data['config_value']):
+                print('mudou')
+                return Response({'status': 'SUCESSO', 'valor': config.config_value})
+            return Response({'status': 'ERRO', 'mensagem': 'Limite de renovações atingido'})
+
+        return Response({'status': 'ERRO', 'mensagem': 'Falha ao renovar o livro'})

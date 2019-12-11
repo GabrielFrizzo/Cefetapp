@@ -178,6 +178,29 @@ export class ApiDjangoService {
       });
     });
   }
+
+  update_config(configId: string, configName, configValue) {
+    return new Promise((resolve, reject) => {
+      this.storage.get('ACCESS_TOKEN').then((token) => {
+        this.http.post(`${this.SERVER_ADRESS}${this.url}user_config/${configId}/update_config/`,
+                         {
+                          config_name: configName,
+                          config_value: configValue
+                         },
+                         { headers: {
+                            Authorization: `Token ${token}`
+                           }
+                         }).subscribe((result: any) => {
+                           console.log('sem erro');
+                           resolve(result);
+                         },
+                         (error) => {
+                           console.log(error);
+                           reject(error.json);
+                         });
+      });
+    });
+  }
 }
 
 
