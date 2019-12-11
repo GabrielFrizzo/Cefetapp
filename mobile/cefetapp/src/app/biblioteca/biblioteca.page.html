@@ -25,7 +25,7 @@
         <ion-label>Renovações:</ion-label>
         <ion-button (click)='renew_book(book)' class='renew-button' slot='end' [ngClass]="(book.renewal_count==3)?'ren-limit':'ren-succ'">
           {{ book.renewal_count }}/3
-          <!-- <ion-icon name='refresh'></ion-icon> -->
+          <ion-icon name='refresh'></ion-icon>
         </ion-button>
       </ion-item>
     </ion-card-content>
