@@ -13,15 +13,31 @@
 </ion-header>
 
 <ion-content>
-  <ion-searchbar placeholder='procurando por um livro?'></ion-searchbar>
+  <ion-searchbar placeholder='procurando por um livro?' (search)="search_book($event)"></ion-searchbar>
 
-  <ion-card *ngFor='let book of books'>
+  <ion-card color='tertiary' *ngFor='let book of querry'>
+    <ion-card-header>
+      <ion-card-title>{{ book.book }}</ion-card-title>
+      <!-- <ion-card-subtitle>{{ book.renewal_date }}</ion-card-subtitle> -->
+    </ion-card-header>
+    <!-- <ion-card-content>
+      <ion-item>
+        <ion-label>Renovações:</ion-label>
+        <ion-button (click)='renew_book(book)' class='renew-button' slot='end' [ngClass]="(book.renewal_count==3)?'ren-limit':'ren-succ'">
+          {{ book.renewal_count }}/3
+          <ion-icon name='refresh'></ion-icon>
+        </ion-button>
+      </ion-item>
+    </ion-card-content> -->
+  </ion-card>
+
+  <ion-card color='primary' *ngFor='let book of books'>
     <ion-card-header>
       <ion-card-title>{{ book.book }}</ion-card-title>
       <ion-card-subtitle>{{ book.renewal_date }}</ion-card-subtitle>
     </ion-card-header>
     <ion-card-content>
-      <ion-item>
+      <ion-item color='dark'>
         <ion-label>Renovações:</ion-label>
         <ion-button (click)='renew_book(book)' class='renew-button' slot='end' [ngClass]="(book.renewal_count==3)?'ren-limit':'ren-succ'">
           {{ book.renewal_count }}/3

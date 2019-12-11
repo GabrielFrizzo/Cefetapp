@@ -10,6 +10,7 @@ import { Livro } from './livro';
 export class BibliotecaPage implements OnInit {
 
   books: any
+  querry: any
 
   constructor(private service: ApiDjangoService) { }
 
@@ -18,6 +19,7 @@ export class BibliotecaPage implements OnInit {
 
   ionViewDidEnter() {
     this.books = [];
+    this.querry = [];
     this.get_biblioteca();
   }
 
@@ -32,6 +34,13 @@ export class BibliotecaPage implements OnInit {
     this.service.renew_book(book.id)
       .then((result: any) => {
         console.log('renovou!');
+      });
+  }
+
+  search_book(event) {
+    this.service.search_book(event.srcElement.value)
+      .then((result: [Livro]) => {
+        this.querry = result;
       });
   }
 

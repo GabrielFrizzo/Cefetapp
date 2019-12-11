@@ -2,6 +2,7 @@ from django.contrib.auth.decorators import login_required
 from rest_framework import viewsets
 from rest_framework.decorators import action
 from rest_framework.response import Response
+from django.db.models import Q
 
 from .serializers import SubjectSerializer, GradeSerializer, RentedBookSerializer, GradeHistorySerializer, UserConfigSerializer
 from .models import Subject, Grade, RentedBook, UserConfig
@@ -50,6 +51,16 @@ class RentedBookViewSet(viewsets.ModelViewSet):
             return Response({'status': 'ERRO', 'mensagem': 'Limite de renovações atingido'})
 
         return Response({'status': 'ERRO', 'mensagem': 'Falha ao renovar o livro'})
+
+class SearchBookViewSet(viewsets.ReadOnlyModelViewSet):
+    serializer_class = RentedBookSerializer
+
+    def get_queryset(self): # new
+        query = self.request.GET.get('q')
+        object_list = RentedBook.objects.filter(
+            Q(book__icontains=query)
+        )
+        return object_list
 
 
 class UserConfigViewSet(viewsets.ModelViewSet):
