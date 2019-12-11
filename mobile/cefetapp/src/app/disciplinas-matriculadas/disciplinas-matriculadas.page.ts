@@ -25,7 +25,6 @@ export class DisciplinasMatriculadasPage implements OnInit {
         result.forEach(element => {
           this.subjects.push({name: element.grade.subject.name, class_times: JSON.parse(element.grade.subject.class_times)})
         });
-        console.log(this.subjects)
       });
   }
 
