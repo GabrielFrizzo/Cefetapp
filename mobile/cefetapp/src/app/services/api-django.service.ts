@@ -119,7 +119,7 @@ export class ApiDjangoService {
       });
     });
   }
-  
+
 
   renew_book(bookId: string) {
     return new Promise((resolve, reject) => {
@@ -139,7 +139,6 @@ export class ApiDjangoService {
       });
     });
   }
-}
 
 
   get_user_config() {
