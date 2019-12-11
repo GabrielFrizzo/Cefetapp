@@ -36,15 +36,13 @@ export class LoginPage implements OnInit {
     })
   }
 
-  signup(form){
-    //this.authService.register(form.value).subscribe((res) => {
-    //   this.router.navigateByUrl('home');
-    //});
-    if (form.value.ra === "1" && form.value.password === "password") {//password handling top
-      this.router.navigateByUrl('home');
-    } else {
+  register(form){
+    this.authService.register(form.value).subscribe((res) => {
+       this.router.navigateByUrl('home');
+    }, (err) => {
+      console.log(err)
       this.presentToast('Usuário não cadastrado no Portal do Aluno');
-    }
+    });
   }
 
   async presentToast(message) {

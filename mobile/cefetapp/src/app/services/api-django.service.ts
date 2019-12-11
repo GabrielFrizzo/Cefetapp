@@ -29,6 +29,26 @@ export class ApiDjangoService {
     );
   }
 
+
+  register(user: User): Observable<AuthResponse> {  
+    var data = {
+      username: user.username,
+      email: user.username + "@gmail.com",
+      password1: user.password,
+      password2: user.password
+    }
+    return this.http.post(`${this.SERVER_ADRESS}/rest-auth/registration/`, data).pipe(
+      tap(async (res: AuthResponse ) => {
+        console.log(res);
+        console.log(res.key);
+        await this.storage.set('ACCESS_TOKEN', res.key);
+
+        this.authSubject.next(true);
+      }
+      )
+    );
+  }
+
   async logout() {
     await this.storage.remove('ACCESS_TOKEN');
     this.authSubject.next(false);
