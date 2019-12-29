@@ -9,10 +9,10 @@ class MyHomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final Map<String, Icon> _pages = {
-      'Grade Horária': Icon(MdiIcons.calendarMonth),
-      'Biblioteca': Icon(MdiIcons.bookshelf),
-      'Histórico': Icon(Icons.school),
-      'Disciplinas': Icon(MdiIcons.bookOpenVariant)
+      'Grade Horária': Icon(MdiIcons.calendarMonth, size: 50,),
+      'Biblioteca': Icon(MdiIcons.bookshelf, size: 50,),
+      'Histórico': Icon(Icons.school, size: 50,),
+      'Disciplinas': Icon(MdiIcons.bookOpenVariant, size: 50,)
     };
 
     return Scaffold(
@@ -40,13 +40,13 @@ class MyHomePage extends StatelessWidget {
                           Container(
                             padding: EdgeInsets.symmetric(vertical: 25),
                             child: Text(
-                              'Oi, Gabriela',
+                              'Oi, Gabriel',
                               style: TextStyle(fontSize: 25),
                             ),
                           ),
-                          Text('Engenharia de Alimentos'),
+                          Text('Engenharia de Computação'),
                           Text(
-                            'Registro Acadêmico: 1508920',
+                            'Registro Acadêmico: 1904981',
                             style: TextStyle(fontWeight: FontWeight.w300),
                           ),
                         ],
