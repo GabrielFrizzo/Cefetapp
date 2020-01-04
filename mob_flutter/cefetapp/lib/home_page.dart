@@ -13,14 +13,9 @@ class MyHomePage extends StatelessWidget {
     return Scaffold(
       body: Stack(
         children: <Widget>[
-          Container(
-            decoration: BoxDecoration(
-              image: DecorationImage(
-                fit: BoxFit.none,
-                alignment: Alignment(-0.8, -2),
-                image: AssetImage('assets/blueCircle.png'),
-              ),
-            ),
+          CustomPaint(
+            child: Container(),
+            painter: HomePainter(),
           ),
           Column(
             children: <Widget>[
@@ -45,13 +40,15 @@ class MyHomePage extends StatelessWidget {
                           ),
                           Text(
                             'Engenharia de Computação',
-                            style: TextStyle(color: _headTxtColor),
+                            style:
+                                TextStyle(color: _headTxtColor, fontSize: 17),
                           ),
                           Text(
                             'Registro Acadêmico: 1904981',
                             style: TextStyle(
                               fontWeight: FontWeight.w300,
                               color: _headTxtColor,
+                              fontSize: 16,
                             ),
                           ),
                         ],
@@ -85,12 +82,9 @@ class MyHomePage extends StatelessWidget {
               ),
               Expanded(
                 child: Padding(
-                  padding: const EdgeInsets.only(
-                    top: 130,
-                    left: 30,
-                    right: 30,
-                  ),
+                  padding: const EdgeInsets.symmetric(horizontal: 15),
                   child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
                       HomeButton(
                         buttonTxt: 'Grade Horária',
@@ -118,5 +112,25 @@ class MyHomePage extends StatelessWidget {
         ],
       ),
     );
+  }
+}
+
+class HomePainter extends CustomPainter {
+  @override
+  void paint(Canvas canvas, Size size) {
+    final paint = Paint()..color = Color(0xFF7AB8E4);
+
+    canvas.drawOval(
+        Rect.fromCenter(
+          center: Offset(size.width, 0),
+          width: size.width * 2 * 1.3,
+          height: size.height * 2 * 0.35,
+        ),
+        paint);
+  }
+
+  @override
+  bool shouldRepaint(CustomPainter oldDelegate) {
+    return false;
   }
 }
