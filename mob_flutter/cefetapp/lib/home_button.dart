@@ -20,21 +20,21 @@ class HomeButton extends StatelessWidget {
     return Container(
       padding: EdgeInsets.all(1),
       margin: EdgeInsets.symmetric(vertical: 10),
-      height: 80,
+      height: MediaQuery.of(context).size.height * 0.11,
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(8),
+        borderRadius: BorderRadius.circular(20),
         boxShadow: [
           BoxShadow(
             color: Color.fromRGBO(0, 0, 50, 0.7),
-            offset: Offset(4, 4),
-            blurRadius: 1.0,
+            offset: Offset(2, 2),
+            blurRadius: 1,
           ),
         ],
       ),
       child: RaisedButton(
         color: Theme.of(context).primaryColorLight,
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(8),
+          borderRadius: BorderRadius.circular(20),
         ),
         onPressed: () {},
         elevation: 0,

@@ -17,94 +17,110 @@ class MyHomePage extends StatelessWidget {
             child: Container(),
             painter: HomePainter(),
           ),
-          Column(
+          Stack(
             children: <Widget>[
-              Container(
-                margin: const EdgeInsets.all(50),
+              FractionallySizedBox(
+                heightFactor: 0.3,
                 child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: <Widget>[
-                    Expanded(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: <Widget>[
-                          Container(
-                            padding: EdgeInsets.symmetric(vertical: 25),
-                            child: Text(
-                              'Oi, Gabriel',
-                              style: TextStyle(
-                                fontSize: 25,
-                                fontWeight: FontWeight.bold,
-                                color: _headTxtColor,
+                    Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: <Widget>[
+                        Text(
+                          'Oi, Gabriel',
+                          style: TextStyle(
+                            fontSize: 25,
+                            fontWeight: FontWeight.bold,
+                            color: _headTxtColor,
+                          ),
+                        ),
+                        SizedBox(height: 15),
+                        Text(
+                          'Engenharia de Computação',
+                          style: TextStyle(color: _headTxtColor, fontSize: 17),
+                        ),
+                        Text(
+                          'Registro Acadêmico: 1904981',
+                          style: TextStyle(
+                            fontWeight: FontWeight.w300,
+                            color: _headTxtColor,
+                            fontSize: 16,
+                          ),
+                        ),
+                      ],
+                    ),
+                    Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: <Widget>[
+                        SizedBox(height: 20),
+                        Expanded(
+                          child: CircleAvatar(
+                            radius: 47,
+                            backgroundColor: Colors.white,
+                            child: Material(
+                              elevation: 4.0,
+                              shape: CircleBorder(),
+                              clipBehavior: Clip.hardEdge,
+                              color: Colors.transparent,
+                              child: Ink.image(
+                                image: NetworkImage(
+                                    'https://avatars2.githubusercontent.com/u/34910470?s=400&u=522442f28ae28b8e12dd27f93291dbfbc6ca4e39&v=4'),
+                                fit: BoxFit.cover,
+                                width: 90,
+                                height: 90,
+                                child: InkWell(
+                                  onTap: () {
+                                    print('asasd');
+                                  },
+                                ),
                               ),
                             ),
                           ),
-                          Text(
-                            'Engenharia de Computação',
+                        ),
+                        // SizedBox(height: 30),
+                        FlatButton(
+                          color: Color(0xA0446B86),
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(20)),
+                          child: Text(
+                            'Sair',
                             style:
                                 TextStyle(color: _headTxtColor, fontSize: 17),
                           ),
-                          Text(
-                            'Registro Acadêmico: 1904981',
-                            style: TextStyle(
-                              fontWeight: FontWeight.w300,
-                              color: _headTxtColor,
-                              fontSize: 16,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                    CircleAvatar(
-                      radius: 52,
-                      backgroundColor: Colors.white,
-                      child: Material(
-                        elevation: 4.0,
-                        shape: CircleBorder(),
-                        clipBehavior: Clip.hardEdge,
-                        color: Colors.transparent,
-                        child: Ink.image(
-                          image: NetworkImage(
-                              'https://avatars2.githubusercontent.com/u/34910470?s=400&u=522442f28ae28b8e12dd27f93291dbfbc6ca4e39&v=4'),
-                          padding: EdgeInsets.all(5),
-                          fit: BoxFit.cover,
-                          width: 100,
-                          height: 100,
-                          child: InkWell(
-                            onTap: () {
-                              print('asasd');
-                            },
-                          ),
+                          onPressed: () {},
                         ),
-                      ),
+                      ],
                     ),
                   ],
                 ),
               ),
-              Expanded(
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 15),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: <Widget>[
-                      HomeButton(
-                        buttonTxt: 'Grade Horária',
-                        icon: CefetIcon.calendar,
-                      ),
-                      HomeButton(
-                        buttonTxt: 'Biblioteca',
-                        icon: CefetIcon.books,
-                      ),
-                      HomeButton(
-                        buttonTxt: 'Histórico',
-                        icon: CefetIcon.hat,
-                        padding: 15,
-                      ),
-                      HomeButton(
-                        buttonTxt: 'Disciplinas',
-                        icon: CefetIcon.paper,
-                      ),
-                    ],
-                  ),
+              Container(
+                alignment: Alignment(0, 0.7),
+                margin: EdgeInsets.symmetric(horizontal: 20),
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    HomeButton(
+                      buttonTxt: 'Grade Horária',
+                      icon: CefetIcon.calendar,
+                    ),
+                    HomeButton(
+                      buttonTxt: 'Biblioteca',
+                      icon: CefetIcon.books,
+                    ),
+                    HomeButton(
+                      buttonTxt: 'Histórico',
+                      icon: CefetIcon.hat,
+                      padding: 15,
+                    ),
+                    HomeButton(
+                      buttonTxt: 'Disciplinas',
+                      icon: CefetIcon.paper,
+                    ),
+                  ],
                 ),
               ),
             ],

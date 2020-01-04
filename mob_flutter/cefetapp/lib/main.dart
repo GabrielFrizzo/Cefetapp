@@ -14,6 +14,7 @@ class MyApp extends StatelessWidget {
         fontFamily: 'Futura',
       ),
       home: MyHomePage(title: 'Cefetapp'),
+      debugShowCheckedModeBanner: false,
     );
   }
 }
