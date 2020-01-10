@@ -1,6 +1,6 @@
 import 'package:cefetapp/presentation/cefet_icon_icons.dart';
+import 'package:cefetapp/subjects_page.dart';
 import 'package:flutter/material.dart';
-import 'package:cefetapp/home_button.dart';
 
 class MyHomePage extends StatelessWidget {
   MyHomePage({Key key, this.title}) : super(key: key);
@@ -79,7 +79,6 @@ class MyHomePage extends StatelessWidget {
                             ),
                           ),
                         ),
-                        // SizedBox(height: 30),
                         FlatButton(
                           color: Color(0xA0446B86),
                           shape: RoundedRectangleBorder(
@@ -103,22 +102,30 @@ class MyHomePage extends StatelessWidget {
                   mainAxisSize: MainAxisSize.min,
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
-                    HomeButton(
+                    buildHomeButton(
+                      context,
                       buttonTxt: 'Grade Horária',
                       icon: CefetIcon.calendar,
+                      route: SubjectsPage(),
                     ),
-                    HomeButton(
+                    buildHomeButton(
+                      context,
                       buttonTxt: 'Biblioteca',
                       icon: CefetIcon.books,
+                      route: SubjectsPage(),
                     ),
-                    HomeButton(
+                    buildHomeButton(
+                      context,
                       buttonTxt: 'Histórico',
                       icon: CefetIcon.hat,
+                      route: SubjectsPage(),
                       padding: 15,
                     ),
-                    HomeButton(
+                    buildHomeButton(
+                      context,
                       buttonTxt: 'Disciplinas',
                       icon: CefetIcon.paper,
+                      route: SubjectsPage(),
                     ),
                   ],
                 ),
@@ -126,6 +133,59 @@ class MyHomePage extends StatelessWidget {
             ],
           ),
         ],
+      ),
+    );
+  }
+
+  Widget buildHomeButton(
+    BuildContext context, {
+    String buttonTxt,
+    IconData icon,
+    double padding: 0,
+    Widget route,
+  }) {
+    return Container(
+      padding: EdgeInsets.all(1),
+      margin: EdgeInsets.symmetric(vertical: 10),
+      height: MediaQuery.of(context).size.height * 0.11,
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(20),
+        boxShadow: [
+          BoxShadow(
+            color: Color.fromRGBO(0, 0, 50, 0.7),
+            offset: Offset(2, 2),
+            blurRadius: 1,
+          ),
+        ],
+      ),
+      child: RaisedButton(
+        color: Color(0xFFB3D3E5),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(20),
+        ),
+        onPressed: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => route),
+          );
+        },
+        elevation: 0,
+        child: Row(
+          mainAxisSize: MainAxisSize.min,
+          children: <Widget>[
+            Expanded(
+              child: Text(
+                buttonTxt,
+                textAlign: TextAlign.left,
+                style: TextStyle(fontSize: 25, color: Colors.black87),
+              ),
+            ),
+            Icon(icon, size: 50),
+            Padding(
+              padding: EdgeInsets.only(right: padding),
+            )
+          ],
+        ),
       ),
     );
   }
