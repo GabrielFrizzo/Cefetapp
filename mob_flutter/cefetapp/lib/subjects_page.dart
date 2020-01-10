@@ -37,19 +37,24 @@ class SubjectsPage extends StatelessWidget {
           Expanded(
             child: ListView(
                 padding: EdgeInsets.symmetric(horizontal: 30),
-                children:
-                    _classes.map((_class) => _buildClassTile(_class)).toList()),
+                children: _classes
+                    .map((_class) =>
+                        _buildClassTile(context, _class[0], _class[1]))
+                    .toList()),
           )
         ],
       ),
     );
   }
 
-  Widget _buildClassTile(List<Object> _class) {
-    final Color _color = Colors.primaries[Random().nextInt(Colors.primaries.length)];
+  Widget _buildClassTile(
+      BuildContext context, String _className, List<String> _times) {
+    final Color _color =
+        Colors.primaries[Random().nextInt(Colors.primaries.length)];
     return Container(
       padding: EdgeInsets.all(1),
       margin: EdgeInsets.symmetric(vertical: 10),
+      height: MediaQuery.of(context).size.height * 0.15,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(20),
         boxShadow: [
@@ -62,10 +67,54 @@ class SubjectsPage extends StatelessWidget {
         color: _color,
       ),
       child: FlatButton(
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(20),
+        ),
         onPressed: () {},
-        child: Text(
-          _class[0],
-          style: TextStyle(color: Colors.white),
+        child: Stack(
+          children: <Widget>[
+            Positioned(
+              top: 15,
+              left: 10,
+              child: Text(
+                _className,
+                style: TextStyle(color: Colors.white, fontSize: 20),
+              ),
+            ),
+            Positioned(
+              bottom: 15,
+              left: 10,
+              child: Column(
+                children: _times
+                    .map((time) => Padding(
+                          padding: const EdgeInsets.symmetric(
+                            vertical: 5,
+                          ),
+                          child: Text(
+                            time,
+                            style: TextStyle(color: Colors.white),
+                          ),
+                        ))
+                    .toList(),
+              ),
+            ),
+            Positioned(
+              bottom: 10,
+              right: 5,
+              child: Container(
+                padding: EdgeInsets.symmetric(horizontal: 5),
+                decoration: BoxDecoration(
+                  color: Colors.black26,
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                child: Icon(
+                  Icons.keyboard_arrow_right,
+                  color: Colors.white,
+                  size: 40,
+                ),
+              ),
+            ),
+          ],
         ),
         // subtitle: Column(
         //   mainAxisSize: MainAxisSize.min,
