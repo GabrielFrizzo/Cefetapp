@@ -1,3 +1,4 @@
+import 'package:cefetapp/library_page.dart';
 import 'package:cefetapp/presentation/cefet_icon_icons.dart';
 import 'package:cefetapp/subjects_page.dart';
 import 'package:flutter/material.dart';
@@ -112,7 +113,7 @@ class MyHomePage extends StatelessWidget {
                       context,
                       buttonTxt: 'Biblioteca',
                       icon: CefetIcon.books,
-                      route: SubjectsPage(),
+                      route: LibraryPage(),
                     ),
                     buildHomeButton(
                       context,
@@ -123,7 +124,7 @@ class MyHomePage extends StatelessWidget {
                     ),
                     buildHomeButton(
                       context,
-                      buttonTxt: 'Disciplinas',
+                      buttonTxt: 'Disciplinas Matriculadas',
                       icon: CefetIcon.paper,
                       route: SubjectsPage(),
                     ),
@@ -166,7 +167,10 @@ class MyHomePage extends StatelessWidget {
         onPressed: () {
           Navigator.push(
             context,
-            MaterialPageRoute(builder: (context) => route),
+            PageRouteBuilder(
+              transitionDuration: Duration(milliseconds: 800),
+              pageBuilder: (_, __, ___) => route,
+            ),
           );
         },
         elevation: 0,
@@ -174,10 +178,20 @@ class MyHomePage extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           children: <Widget>[
             Expanded(
-              child: Text(
-                buttonTxt,
-                textAlign: TextAlign.left,
-                style: TextStyle(fontSize: 25, color: Colors.black87),
+              child: Hero(
+                tag: buttonTxt,
+                child: Material(
+                  //Fixes Hero bug with text
+                  color: Colors.transparent,
+                  child: Text(
+                    buttonTxt,
+                    textAlign: TextAlign.left,
+                    style: TextStyle(
+                      fontSize: 26,
+                      color: Colors.black87,
+                    ),
+                  ),
+                ),
               ),
             ),
             Icon(icon, size: 50),

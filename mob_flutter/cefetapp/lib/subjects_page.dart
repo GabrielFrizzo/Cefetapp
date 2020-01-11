@@ -29,9 +29,20 @@ class SubjectsPage extends StatelessWidget {
           Container(
             alignment: Alignment(-0.6, 0),
             height: MediaQuery.of(context).size.height * 0.2,
-            child: Text(
-              'Disciplinas Matriculadas',
-              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 26),
+            child: Hero(
+              tag: 'Disciplinas Matriculadas',
+              child: Material(
+                //Fixes Hero bug with text
+                color: Colors.transparent,
+                child: Text(
+                  'Disciplinas Matriculadas',
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 26,
+                    color: Colors.black87,
+                  ),
+                ),
+              ),
             ),
           ),
           Expanded(
