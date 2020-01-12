@@ -127,19 +127,6 @@ class SubjectsPage extends StatelessWidget {
             ),
           ],
         ),
-        // subtitle: Column(
-        //   mainAxisSize: MainAxisSize.min,
-        //   children: <Widget>[
-        //     Text(
-        //       'Seg 10:20 - 12:00',
-        //       style: TextStyle(color: Colors.white),
-        //     ),
-        //     Text(
-        //       'Qua 15:50 - 17:30',
-        //       style: TextStyle(color: Colors.white),
-        //     ),
-        //   ],
-        // ),
       ),
     );
   }
