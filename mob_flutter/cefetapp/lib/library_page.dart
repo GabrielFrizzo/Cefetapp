@@ -97,22 +97,18 @@ class LibraryPage extends StatelessWidget {
   }
 
   Widget _buildLateTile(int renewals, int debt) {
-    return Ink(
+    return Container(
       decoration: BoxDecoration(
         borderRadius: BorderRadius.horizontal(left: Radius.circular(20)),
         color: Color(0xFFD06464),
       ),
-      child: InkWell(
-        borderRadius: BorderRadius.horizontal(left: Radius.circular(20)),
-        onTap: () {},
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: <Widget>[
-            Text('$renewals/3', style: TextStyle(fontSize: 20)),
-            Text('Atrasado', style: TextStyle(fontSize: 16)),
-            Text('Multa: R\$ $debt,00'),
-          ],
-        ),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        children: <Widget>[
+          Text('$renewals/3', style: TextStyle(fontSize: 20)),
+          Text('Atrasado', style: TextStyle(fontSize: 16)),
+          Text('Multa: R\$ $debt,00'),
+        ],
       ),
     );
   }
