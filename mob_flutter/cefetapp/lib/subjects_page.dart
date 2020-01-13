@@ -1,25 +1,37 @@
 import 'dart:math';
 
+import 'package:cefetapp/subject.dart';
+import 'package:cefetapp/subject_details_page.dart';
 import 'package:flutter/material.dart';
 
 class SubjectsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final _classes = [
-      [
-        'Eletrônica Geral 2',
-        [
-          'Seg 10:20 - 12:00',
-          'Qua 15:50 - 17:30',
-        ],
-      ],
-      [
-        'Física 3',
-        [
-          'Seg 10:20 - 12:00',
-          'Qua 15:50 - 17:30',
-        ],
-      ]
+      Subject(
+          'Eletrônica Geral 2',
+          [
+            'Seg 10:20 - 12:00',
+            'Qua 15:50 - 17:30',
+          ],
+          ['E-204', 'B-101'],
+          'CSD-20 - S73',
+          15,
+          7,
+          87.5,
+          7.2),
+      Subject(
+          'Física 3',
+          [
+            'Seg 10:20 - 12:00',
+            'Qua 15:50 - 17:30',
+          ],
+          ['E-104', 'B-101'],
+          'CSD-20 - S71',
+          18,
+          2,
+          82.5,
+          4.2),
     ];
 
     return Scaffold(
@@ -50,7 +62,7 @@ class SubjectsPage extends StatelessWidget {
                 padding: EdgeInsets.symmetric(horizontal: 30),
                 children: _classes
                     .map((_class) =>
-                        _buildClassTile(context, _class[0], _class[1]))
+                        _buildClassTile(context, _class))
                     .toList()),
           )
         ],
@@ -59,7 +71,7 @@ class SubjectsPage extends StatelessWidget {
   }
 
   Widget _buildClassTile(
-      BuildContext context, String _className, List<String> _times) {
+      BuildContext context, Subject _class) {
     final Color _color =
         Colors.primaries[Random().nextInt(Colors.primaries.length)];
     return Container(
@@ -81,14 +93,19 @@ class SubjectsPage extends StatelessWidget {
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(20),
         ),
-        onPressed: () {},
+        onPressed: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (_) => SubjectDetailsPage(_class, _color)),
+          );
+        },
         child: Stack(
           children: <Widget>[
             Positioned(
               top: 15,
               left: 10,
               child: Text(
-                _className,
+                _class.name,
                 style: TextStyle(color: Colors.white, fontSize: 20),
               ),
             ),
@@ -96,7 +113,7 @@ class SubjectsPage extends StatelessWidget {
               bottom: 15,
               left: 10,
               child: Column(
-                children: _times
+                children: _class.times
                     .map((time) => Padding(
                           padding: const EdgeInsets.symmetric(
                             vertical: 5,
