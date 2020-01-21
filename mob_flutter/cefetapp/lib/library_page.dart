@@ -16,19 +16,12 @@ class LibraryPage extends StatelessWidget {
           Container(
             alignment: Alignment(-0.6, 0),
             height: MediaQuery.of(context).size.height * 0.2,
-            child: Hero(
-              tag: 'Biblioteca',
-              child: Material(
-                //Fixes Hero bug with text
-                color: Colors.transparent,
-                child: Text(
-                  'Biblioteca',
-                  style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 26,
-                    color: Colors.black87,
-                  ),
-                ),
+            child: Text(
+              'Biblioteca',
+              style: TextStyle(
+                fontWeight: FontWeight.bold,
+                fontSize: 26,
+                color: Colors.black87,
               ),
             ),
           ),
