@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:cefetapp/subject.dart';
 import 'package:cefetapp/subject_details_page.dart';
 import 'package:flutter/material.dart';

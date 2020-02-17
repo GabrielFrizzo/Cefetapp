@@ -1,4 +1,5 @@
 import 'package:cefetapp/home_page.dart';
+import 'package:cefetapp/login_page.dart';
 import 'package:flutter/material.dart';
 
 void main() => runApp(MyApp());
@@ -12,7 +13,8 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
         fontFamily: 'Futura',
       ),
-      home: MyHomePage(title: 'Cefetapp'),
+      home: LoginPage(),
+      // home: MyHomePage(title: 'Cefetapp'),
       debugShowCheckedModeBanner: false,
     );
   }
