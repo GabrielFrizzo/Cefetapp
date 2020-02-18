@@ -13,95 +13,120 @@ class LoginPage extends StatelessWidget {
             painter: LoginPainter(),
           ),
           Center(
-            child: ListView(
-              children: <Widget>[
-                Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 100),
-                  margin: const EdgeInsets.symmetric(vertical: 40),
-                  child: Image.asset('assets/images/logo.png', width: 200),
-                ),
-                Container(
-                  height: MediaQuery.of(context).size.height * 0.35,
-                  decoration: BoxDecoration(
-                    color: const Color(0xFFFBFBFB),
-                    boxShadow: [
-                      BoxShadow(offset: Offset(1, 1), color: Colors.black54)
-                    ],
-                    borderRadius: BorderRadius.circular(30),
+            child: SingleChildScrollView(
+              reverse: true,
+              physics: NeverScrollableScrollPhysics(),
+              child: Column(
+                children: <Widget>[
+                  Container(
+                    padding: const EdgeInsets.symmetric(horizontal: 100),
+                    margin: const EdgeInsets.symmetric(vertical: 40),
+                    child: Image.asset('assets/images/logo.png', width: 200),
                   ),
-                  margin: const EdgeInsets.symmetric(horizontal: 40),
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 30,
-                    vertical: 20,
-                  ),
-                  child: Stack(
-                    children: <Widget>[
-                      Container(
-                        padding: const EdgeInsets.only(top: 30),
-                        child: Form(
-                          child: Column(
-                            children: <Widget>[
-                              TextFormField(
-                                decoration: InputDecoration(hintText: 'RA'),
-                              ),
-                              SizedBox(height: 20),
-                              TextFormField(
-                                decoration: InputDecoration(
-                                  hintText: 'Senha do Portal do Aluno',
+                  Container(
+                    height: MediaQuery.of(context).size.height * 0.35,
+                    decoration: BoxDecoration(
+                      color: const Color(0xFFFBFBFB),
+                      boxShadow: [
+                        BoxShadow(offset: Offset(1, 1), color: Colors.black54)
+                      ],
+                      borderRadius: BorderRadius.circular(30),
+                    ),
+                    margin: const EdgeInsets.symmetric(horizontal: 40),
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 30,
+                      vertical: 20,
+                    ),
+                    child: Stack(
+                      children: <Widget>[
+                        Container(
+                          padding: const EdgeInsets.only(top: 30),
+                          child: Form(
+                            child: Column(
+                              children: <Widget>[
+                                TextFormField(
+                                  decoration: InputDecoration(hintText: 'RA'),
                                 ),
+                                SizedBox(height: 20),
+                                TextFormField(
+                                  decoration: InputDecoration(
+                                    hintText: 'Senha do Portal do Aluno',
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                        Align(
+                          alignment: Alignment.bottomRight,
+                          child: Tooltip(
+                            message: 'Mensagem de dica',
+                            child: Container(
+                              width: 30,
+                              height: 30,
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(100),
+                                color: const Color(0xFF5887A9),
                               ),
-                            ],
-                          ),
-                        ),
-                      ),
-                      Align(
-                        alignment: Alignment.bottomRight,
-                        child: Tooltip(
-                          message: 'Mensagem de dica',
-                          child: Container(
-                            width: 30,
-                            height: 30,
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(100),
-                              color: const Color(0xFF5887A9),
-                            ),
-                            child: Center(
-                              child: Text('?',
-                                  style: TextStyle(
-                                    color: Colors.white,
-                                    fontFamily: 'Roboto',
-                                    fontSize: 20,
-                                  )),
+                              child: Center(
+                                child: Text('?',
+                                    style: TextStyle(
+                                      color: Colors.white,
+                                      fontFamily: 'Roboto',
+                                      fontSize: 20,
+                                    )),
+                              ),
                             ),
                           ),
+                        )
+                      ],
+                    ),
+                  ),
+                  Container(
+                    height: 200,
+                    margin: const EdgeInsets.symmetric(horizontal: 60),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: <Widget>[
+                        buildLowerButton(
+                          text: 'Entrar',
+                          onPressed: () {
+                            Navigator.of(context).pushReplacementNamed('/home');
+                          },
                         ),
-                      )
-                    ],
-                  ),
-                ),
-                Container(
-                  height: 200,
-                  margin: const EdgeInsets.symmetric(horizontal: 60),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: <Widget>[
-                      buildLowerButton(
-                          text: 'Entrar', onPressed: () {}, context: context),
-                      Container(
-                        alignment: Alignment.centerLeft,
-                        padding:
-                            const EdgeInsets.only(left: 20, top: 25, bottom: 8),
-                        child: Text('Novo por aqui?',
-                            style: TextStyle(fontSize: 18)),
-                      ),
-                      buildLowerButton(
-                          text: 'Cadastrar',
-                          onPressed: () {},
-                          context: context),
-                    ],
-                  ),
-                )
-              ],
+                        Container(
+                          alignment: Alignment.centerLeft,
+                          padding: const EdgeInsets.only(
+                              left: 20, top: 25, bottom: 8),
+                          child: Text('Novo por aqui?',
+                              style: TextStyle(fontSize: 18)),
+                        ),
+                        Builder(
+                          builder: (BuildContext context) {
+                            return buildLowerButton(
+                              text: 'Cadastrar',
+                              onPressed: () {
+                                Scaffold.of(context).showSnackBar(
+                                  SnackBar(
+                                    content: Text('Em construção!'),
+                                    action: SnackBarAction(
+                                      label: 'Ok',
+                                      onPressed: () {
+                                        Scaffold.of(context)
+                                            .hideCurrentSnackBar();
+                                      },
+                                    ),
+                                  ),
+                                );
+                              },
+                            );
+                          },
+                        ),
+                      ],
+                    ),
+                  )
+                ],
+              ),
             ),
           ),
         ],
@@ -109,8 +134,7 @@ class LoginPage extends StatelessWidget {
     );
   }
 
-  Widget buildLowerButton(
-      {String text, Function onPressed, BuildContext context}) {
+  Widget buildLowerButton({String text, Function onPressed}) {
     return FlatButton(
       onPressed: onPressed,
       child: Container(

@@ -144,8 +144,7 @@ class _SchedulePageState extends State<SchedulePage> {
         final _x = 65 + _class.days[i] * 167.0;
         final _ys = 30 + _class.enumTimes[i][0] * 44.6;
         final _ye = 62 + (_class.enumTimes[i][1] - 1) * 44.6;
-        final _color =
-            Colors.primaries[_class.hashCode.toInt() % Colors.primaries.length];
+        final _color = _class.color;
 
         tiles.add(Positioned.fromRect(
           rect: Rect.fromLTRB(_x, _ys, _x + 110, _ye),

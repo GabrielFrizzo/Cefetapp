@@ -110,10 +110,9 @@ class SubjectsPage extends StatelessWidget {
           borderRadius: BorderRadius.circular(20),
         ),
         onPressed: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(
-                builder: (_) => SubjectDetailsPage(_class, _color)),
+          Navigator.of(context).pushNamed(
+            '/subject_details',
+            arguments: _class,
           );
         },
         child: Stack(

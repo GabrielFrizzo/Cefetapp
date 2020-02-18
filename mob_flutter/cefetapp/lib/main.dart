@@ -1,5 +1,6 @@
 import 'package:cefetapp/home_page.dart';
 import 'package:cefetapp/login_page.dart';
+import 'package:cefetapp/route_generator.dart';
 import 'package:flutter/material.dart';
 
 void main() => runApp(MyApp());
@@ -13,8 +14,8 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
         fontFamily: 'Futura',
       ),
-      home: LoginPage(),
-      // home: MyHomePage(title: 'Cefetapp'),
+      initialRoute: '/home',
+      onGenerateRoute: RouteGenerator.generateRoute,
       debugShowCheckedModeBanner: false,
     );
   }

@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:quiver/iterables.dart';
 
 class SubjectDetailsPage extends StatelessWidget {
-  const SubjectDetailsPage(this.subject, this.color);
+  SubjectDetailsPage({@required this.subject}) : color = subject.color;
 
   final Subject subject;
   final Color color;
@@ -58,7 +58,7 @@ class SubjectDetailsPage extends StatelessWidget {
                     margin: EdgeInsets.only(bottom: 20),
                     padding: EdgeInsets.symmetric(horizontal: 10, vertical: 2),
                     decoration: BoxDecoration(
-                      color: HSLColor.fromColor(color).withLightness(0.18).toColor(),
+                      color: _darkenColor(color),
                       borderRadius: BorderRadius.all(Radius.circular(5)),
                     ),
                     child: Text(
@@ -100,6 +100,12 @@ class SubjectDetailsPage extends StatelessWidget {
         ],
       ),
     );
+  }
+
+  Color _darkenColor(color) {
+    return HSLColor.fromColor(color)
+                        .withLightness(0.18)
+                        .toColor();
   }
 
   Widget statisticItem({@required String desc, @required String value}) {

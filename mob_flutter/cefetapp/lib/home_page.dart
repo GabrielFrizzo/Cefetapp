@@ -1,13 +1,8 @@
-import 'package:cefetapp/library_page.dart';
 import 'package:cefetapp/presentation/cefet_icon_icons.dart';
-import 'package:cefetapp/schedule_page.dart';
-import 'package:cefetapp/subjects_page.dart';
 import 'package:flutter/material.dart';
 
 class MyHomePage extends StatelessWidget {
-  MyHomePage({Key key, this.title}) : super(key: key);
-
-  final String title;
+  MyHomePage({Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -90,7 +85,9 @@ class MyHomePage extends StatelessWidget {
                             style:
                                 TextStyle(color: _headTxtColor, fontSize: 17),
                           ),
-                          onPressed: () {},
+                          onPressed: () {
+                            Navigator.of(context).pushReplacementNamed('/');
+                          },
                         ),
                       ],
                     ),
@@ -104,30 +101,30 @@ class MyHomePage extends StatelessWidget {
                   mainAxisSize: MainAxisSize.min,
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
-                    buildHomeButton(
+                    _buildHomeButton(
                       context,
                       buttonTxt: 'Grade Horária',
                       icon: CefetIcon.calendar,
-                      route: SchedulePage(),
+                      route: '/schedule',
                     ),
-                    buildHomeButton(
+                    _buildHomeButton(
                       context,
                       buttonTxt: 'Biblioteca',
                       icon: CefetIcon.books,
-                      route: LibraryPage(),
+                      route: '/library',
                     ),
-                    buildHomeButton(
+                    _buildHomeButton(
                       context,
                       buttonTxt: 'Histórico',
                       icon: CefetIcon.hat,
-                      route: SubjectsPage(),
+                      route: '/subjects',
                       padding: 15,
                     ),
-                    buildHomeButton(
+                    _buildHomeButton(
                       context,
                       buttonTxt: 'Disciplinas Matriculadas',
                       icon: CefetIcon.paper,
-                      route: SubjectsPage(),
+                      route: '/subjects',
                     ),
                   ],
                 ),
@@ -139,13 +136,8 @@ class MyHomePage extends StatelessWidget {
     );
   }
 
-  Widget buildHomeButton(
-    BuildContext context, {
-    String buttonTxt,
-    IconData icon,
-    double padding: 0,
-    Widget route,
-  }) {
+  Widget _buildHomeButton(BuildContext context,
+      {String route, String buttonTxt, IconData icon, double padding: 0}) {
     return Container(
       padding: EdgeInsets.all(1),
       margin: EdgeInsets.symmetric(vertical: 10),
@@ -166,10 +158,7 @@ class MyHomePage extends StatelessWidget {
           borderRadius: BorderRadius.circular(20),
         ),
         onPressed: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(builder: (_) => route),
-          );
+          Navigator.of(context).pushNamed(route);
         },
         elevation: 0,
         child: Row(
