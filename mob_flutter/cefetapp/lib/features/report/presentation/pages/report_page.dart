@@ -49,7 +49,7 @@ class ReportPage extends StatelessWidget {
             height: 50,
             child: TextField(
               decoration: InputDecoration(
-                contentPadding: const EdgeInsets.only(left: 10,top: 2),
+                contentPadding: const EdgeInsets.only(left: 10, top: 2),
                 hintText: 'Pesquisar...',
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(50),
@@ -107,6 +107,7 @@ class ReportPage extends StatelessWidget {
             );
           }).toList(),
         ),
+        SizedBox(height: 40),
       ],
     );
   }
