@@ -7,15 +7,22 @@ void main() => runApp(MyApp());
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Cefetapp',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-        fontFamily: 'Futura',
+    return GestureDetector(
+      onTap: () {
+        final currentFocus = FocusScope.of(context);
+
+        if (!currentFocus.hasPrimaryFocus) currentFocus.unfocus();
+      },
+      child: MaterialApp(
+        title: 'Cefetapp',
+        theme: ThemeData(
+          primarySwatch: Colors.blue,
+          fontFamily: 'Futura',
+        ),
+        initialRoute: '/home',
+        onGenerateRoute: RouteGenerator.generateRoute,
+        debugShowCheckedModeBanner: false,
       ),
-      initialRoute: '/home',
-      onGenerateRoute: RouteGenerator.generateRoute,
-      debugShowCheckedModeBanner: false,
     );
   }
 }
