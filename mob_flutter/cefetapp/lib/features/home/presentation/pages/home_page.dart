@@ -1,4 +1,4 @@
-import 'package:cefetapp/presentation/cefet_icon_icons.dart';
+import 'package:cefetapp/core/presentation/cefet_icon_icons.dart';
 import 'package:flutter/material.dart';
 
 class MyHomePage extends StatelessWidget {

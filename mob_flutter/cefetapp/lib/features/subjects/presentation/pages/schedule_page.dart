@@ -1,8 +1,10 @@
 import 'dart:math';
 
-import 'package:cefetapp/subjects_page.dart';
+import 'package:cefetapp/core/presentation/widgets/titlebar.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+
+import '../../../../core/domain/usecases/get_current_classes.dart';
 
 class SchedulePage extends StatefulWidget {
   @override
@@ -10,8 +12,8 @@ class SchedulePage extends StatefulWidget {
 }
 
 class _SchedulePageState extends State<SchedulePage> {
-  double xOffset = 0;
-  double yOffset = 0;
+  double xOffset = 20;
+  double yOffset = 40;
   final width = 900;
   final height = 800;
   final titleRatio = 0.2;
@@ -21,35 +23,28 @@ class _SchedulePageState extends State<SchedulePage> {
     final sWidth = MediaQuery.of(context).size.width;
     final sHeight = MediaQuery.of(context).size.height * (1 - titleRatio);
     return Scaffold(
-      body: Column(
+      appBar: buildTitleBar(context: context, title: 'Grade Horária'),
+      body: Stack(
         children: <Widget>[
-          buildTitle(context, titleRatio),
-          Expanded(
-            child: Stack(
-              children: <Widget>[
-                Positioned.fromRect(
-                  rect: Rect.fromPoints(
-                    Offset(xOffset, yOffset),
-                    Offset(xOffset + width, yOffset + height),
-                  ),
-                  child: GestureDetector(
-                    behavior: HitTestBehavior.translucent,
-                    onPanUpdate: (DragUpdateDetails details) {
-                      double dx = details.delta.dx;
-                      double dy = details.delta.dy;
-
-                      setState(() {
-                        xOffset =
-                            max(min(xOffset + dx, 20), sWidth - width - 20);
-                        yOffset = max(min(yOffset + dy, 0), sHeight - height);
-                      });
-                    },
-                    child: buildSchedule(),
-                  ),
-                ),
-              ],
+          Positioned.fromRect(
+            rect: Rect.fromPoints(
+              Offset(xOffset, yOffset),
+              Offset(xOffset + width, yOffset + height),
             ),
-          )
+            child: GestureDetector(
+              behavior: HitTestBehavior.translucent,
+              onPanUpdate: (DragUpdateDetails details) {
+                double dx = details.delta.dx;
+                double dy = details.delta.dy;
+
+                setState(() {
+                  xOffset = max(min(xOffset + dx, 20), sWidth - width - 20);
+                  yOffset = max(min(yOffset + dy, 40), sHeight - height);
+                });
+              },
+              child: buildSchedule(),
+            ),
+          ),
         ],
       ),
     );
@@ -121,25 +116,12 @@ class _SchedulePageState extends State<SchedulePage> {
     );
   }
 
-  Widget buildTitle(BuildContext context, double titleRatio) {
-    return Container(
-      alignment: Alignment(-0.8, 0),
-      height: MediaQuery.of(context).size.height * titleRatio,
-      child: Text(
-        'Grade Horária',
-        style: TextStyle(
-          fontWeight: FontWeight.bold,
-          fontSize: 26,
-          color: Colors.black87,
-        ),
-      ),
-    );
-  }
-
   List<Widget> buildClassTiles() {
     List<Widget> tiles = [];
 
-    classes.forEach((_class) {
+    final _classes = GetCurrentClasses().call();
+
+    _classes.forEach((_class) {
       for (var i = 0; i < _class.times.length; i++) {
         final _x = 65 + _class.days[i] * 167.0;
         final _ys = 30 + _class.enumTimes[i][0] * 44.6;
@@ -149,7 +131,7 @@ class _SchedulePageState extends State<SchedulePage> {
         tiles.add(Positioned.fromRect(
           rect: Rect.fromLTRB(_x, _ys, _x + 110, _ye),
           child: Container(
-            padding: EdgeInsets.all(1),
+            padding: const EdgeInsets.symmetric(vertical: 7.0, horizontal: 11.0),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(20),
               color: _color,
@@ -161,9 +143,7 @@ class _SchedulePageState extends State<SchedulePage> {
                 ),
               ],
             ),
-            child: Padding(
-              padding:
-                  const EdgeInsets.symmetric(vertical: 6.0, horizontal: 10.0),
+            child: InkWell(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -178,6 +158,10 @@ class _SchedulePageState extends State<SchedulePage> {
                   ),
                 ],
               ),
+              onTap: () {
+                return Navigator.of(context)
+                    .pushNamed('/subject_details', arguments: _class);
+              },
             ),
           ),
         ));

@@ -1,11 +1,12 @@
-import 'package:cefetapp/home_page.dart';
-import 'package:cefetapp/library_page.dart';
-import 'package:cefetapp/login_page.dart';
-import 'package:cefetapp/schedule_page.dart';
-import 'package:cefetapp/subject.dart';
-import 'package:cefetapp/subject_details_page.dart';
-import 'package:cefetapp/subjects_page.dart';
 import 'package:flutter/material.dart';
+
+import 'core/domain/entities/subject.dart';
+import 'features/home/presentation/pages/home_page.dart';
+import 'features/library/presentation/pages/library_page.dart';
+import 'features/login/presentation/pages/login_page.dart';
+import 'features/subjects/presentation/pages/schedule_page.dart';
+import 'features/subjects/presentation/pages/subject_details_page.dart';
+import 'features/subjects/presentation/pages/subjects_page.dart';
 
 class RouteGenerator {
   static Route<dynamic> generateRoute(RouteSettings settings) {

@@ -1,7 +1,6 @@
-import 'package:cefetapp/home_page.dart';
-import 'package:cefetapp/login_page.dart';
-import 'package:cefetapp/route_generator.dart';
 import 'package:flutter/material.dart';
+
+import 'route_generator.dart';
 
 void main() => runApp(MyApp());
 

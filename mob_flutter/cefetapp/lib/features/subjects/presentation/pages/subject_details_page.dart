@@ -1,6 +1,7 @@
-import 'package:cefetapp/subject.dart';
 import 'package:flutter/material.dart';
 import 'package:quiver/iterables.dart';
+
+import '../../../../core/domain/entities/subject.dart';
 
 class SubjectDetailsPage extends StatelessWidget {
   SubjectDetailsPage({@required this.subject}) : color = subject.color;

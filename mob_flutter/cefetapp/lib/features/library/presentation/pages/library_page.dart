@@ -1,43 +1,25 @@
+import 'package:cefetapp/features/library/domain/usecases/get_rented_books.dart';
 import 'package:flutter/material.dart';
 
+import '../../../../core/presentation/widgets/titlebar.dart';
+import '../../domain/entities/book.dart';
+
 class LibraryPage extends StatelessWidget {
-  final _books = [
-    _Book('Orgulho e Preconceito', 'Jane Austen', 2, 5),
-    _Book('Orgulho e Preconceito', 'Jane Austen', 2, -3),
-    _Book('Orgulho e Preconceito', 'Jane Austen', 3, 3),
-  ];
+  final _books = GetRentedBooks().call();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: <Widget>[
-          Container(
-            alignment: Alignment(-0.6, 0),
-            height: MediaQuery.of(context).size.height * 0.2,
-            child: Text(
-              'Biblioteca',
-              style: TextStyle(
-                fontWeight: FontWeight.bold,
-                fontSize: 26,
-                color: Colors.black87,
-              ),
-            ),
-          ),
-          Expanded(
-            child: ListView(
-                padding: EdgeInsets.symmetric(horizontal: 30),
-                children: _books
-                    .map((_book) => _buildBookTile(context, _book))
-                    .toList()),
-          )
-        ],
+      appBar: buildTitleBar(context: context, title: 'Biblioteca'),
+      body: ListView(
+        padding: const EdgeInsets.only(left: 30, right: 30, top: 30),
+        children:
+            _books.map((_book) => _buildBookTile(context, _book)).toList(),
       ),
     );
   }
 
-  Widget _buildBookTile(BuildContext context, _Book book) {
+  Widget _buildBookTile(BuildContext context, Book book) {
     return Container(
       padding: EdgeInsets.all(1),
       margin: EdgeInsets.symmetric(vertical: 15),
@@ -58,9 +40,8 @@ class LibraryPage extends StatelessWidget {
             width: MediaQuery.of(context).size.width * 0.3,
             child: DefaultTextStyle(
               style: TextStyle(color: Colors.white),
-              child: book.daysLeft < 0
-                  ? _buildLateTile(book.renewals, -book.daysLeft)
-                  : _buildEarlyTile(book.renewals, book.daysLeft),
+              child:
+                  book.isLate() ? _buildLateTile(book) : _buildEarlyTile(book),
             ),
           ),
           Expanded(
@@ -89,7 +70,7 @@ class LibraryPage extends StatelessWidget {
     );
   }
 
-  Widget _buildLateTile(int renewals, int debt) {
+  Widget _buildLateTile(Book book) {
     return Container(
       decoration: BoxDecoration(
         borderRadius: BorderRadius.horizontal(left: Radius.circular(20)),
@@ -98,15 +79,15 @@ class LibraryPage extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: <Widget>[
-          Text('$renewals/3', style: TextStyle(fontSize: 20)),
+          Text('${book.renewals}/3', style: TextStyle(fontSize: 20)),
           Text('Atrasado', style: TextStyle(fontSize: 16)),
-          Text('Multa: R\$ $debt,00'),
+          Text('Multa: R\$ ${-book.daysLeft},00'),
         ],
       ),
     );
   }
 
-  Widget _buildEarlyTile(int renewals, int daysLeft) {
+  Widget _buildEarlyTile(Book book) {
     return Ink(
       decoration: BoxDecoration(
         borderRadius: BorderRadius.horizontal(left: Radius.circular(20)),
@@ -118,7 +99,7 @@ class LibraryPage extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: <Widget>[
-            Text('$renewals/3', style: TextStyle(fontSize: 20)),
+            Text('${book.renewals}/3', style: TextStyle(fontSize: 20)),
             Ink(
               padding: EdgeInsets.symmetric(horizontal: 13, vertical: 5),
               decoration: BoxDecoration(
@@ -127,21 +108,13 @@ class LibraryPage extends StatelessWidget {
               ),
               child: Icon(
                 Icons.autorenew,
-                color: renewals == 3 ? Colors.white24 : Colors.white,
+                color: book.canRenew() ? Colors.white24 : Colors.white,
               ),
             ),
-            Text('Devolução: $daysLeft dias'),
+            Text('Devolução: ${book.daysLeft} dias'),
           ],
         ),
       ),
     );
   }
-}
-
-class _Book {
-  final String name;
-  final String author;
-  final int renewals;
-  final int daysLeft;
-  const _Book(this.name, this.author, this.renewals, this.daysLeft);
 }
