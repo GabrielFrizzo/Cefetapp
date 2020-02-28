@@ -112,7 +112,7 @@ class SubjectDetailsPage extends StatelessWidget {
   Widget statisticItem({@required String desc, @required String value}) {
     return CustomPaint(
       child: Container(
-        margin: EdgeInsets.only(top: 20),
+        margin: const EdgeInsets.only(top: 20),
         padding: const EdgeInsets.only(left: 10.0, bottom: 2.5),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,

@@ -117,7 +117,7 @@ class MyHomePage extends StatelessWidget {
                       context,
                       buttonTxt: 'Histórico',
                       icon: CefetIcon.hat,
-                      route: '/subjects',
+                      route: '/report',
                       padding: 15,
                     ),
                     _buildHomeButton(

@@ -1,9 +1,9 @@
-import '../entities/subject.dart';
+import 'package:cefetapp/core/domain/entities/subject.dart';
 
-class GetCurrentClasses {
-  final classes = [
+class GetMissingClasses {
+final missingClasses = [
     Subject(
-      name: 'Eletrônica Geral 2',
+      name: 'Oficinas de Integração 2',
       days: [0, 2],
       enumTimes: [
         [3, 5],
@@ -17,7 +17,7 @@ class GetCurrentClasses {
       average: 7.2,
     ),
     Subject(
-      name: 'Física 3',
+      name: 'Lógica Reprogramável',
       days: [1, 4],
       enumTimes: [
         [3, 5],
@@ -31,7 +31,7 @@ class GetCurrentClasses {
       average: 2.2,
     ),
     Subject(
-      name: 'Matemática Discreta',
+      name: 'Filosofia',
       days: [1, 2],
       enumTimes: [
         [9, 13],
@@ -46,7 +46,5 @@ class GetCurrentClasses {
     ),
   ];
 
-  List<Subject> call() {
-    return classes;
-  }
+  List<Subject> call() => missingClasses;
 }

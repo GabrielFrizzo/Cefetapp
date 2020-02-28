@@ -1,3 +1,4 @@
+import 'package:cefetapp/features/report/presentation/pages/report_page.dart';
 import 'package:flutter/material.dart';
 
 import 'core/domain/entities/subject.dart';
@@ -21,6 +22,8 @@ class RouteGenerator {
         return MaterialPageRoute(builder: (_) => SchedulePage());
       case '/library':
         return MaterialPageRoute(builder: (_) => LibraryPage());
+      case '/report':
+        return MaterialPageRoute(builder: (_) => ReportPage());
       case '/subjects':
         return MaterialPageRoute(builder: (_) => SubjectsPage());
       case '/subject_details':
