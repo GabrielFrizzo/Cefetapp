@@ -40,8 +40,9 @@ class LibraryPage extends StatelessWidget {
             width: MediaQuery.of(context).size.width * 0.3,
             child: DefaultTextStyle(
               style: TextStyle(color: Colors.white),
-              child:
-                  book.isLate() ? _buildLateTile(book) : _buildEarlyTile(book),
+              child: book.isLate()
+                  ? _buildLateTile(book)
+                  : _buildEarlyTile(context: context, book: book),
             ),
           ),
           Expanded(
@@ -87,7 +88,7 @@ class LibraryPage extends StatelessWidget {
     );
   }
 
-  Widget _buildEarlyTile(Book book) {
+  Widget _buildEarlyTile({BuildContext context, Book book}) {
     return Ink(
       decoration: BoxDecoration(
         borderRadius: BorderRadius.horizontal(left: Radius.circular(20)),
@@ -95,7 +96,11 @@ class LibraryPage extends StatelessWidget {
       ),
       child: InkWell(
         borderRadius: BorderRadius.horizontal(left: Radius.circular(20)),
-        onTap: () {},
+        onTap: () {
+          book.canRenew()
+              ? _showRenewConfirmationDialog(context: context, book: book)
+              : showDialog(context: context);
+        },
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: <Widget>[
@@ -108,13 +113,73 @@ class LibraryPage extends StatelessWidget {
               ),
               child: Icon(
                 Icons.autorenew,
-                color: book.canRenew() ? Colors.white24 : Colors.white,
+                color: book.canRenew() ? Colors.white : Colors.white24,
               ),
             ),
             Text('Devolução: ${book.daysLeft} dias'),
           ],
         ),
       ),
+    );
+  }
+
+  _showRenewConfirmationDialog({BuildContext context, Book book}) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          content: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: <Widget>[
+              Text(
+                'Esta é sua ${book.renewals} renovação. Você poderá renovar mais ${3 - book.renewals} vezes.',
+                style: TextStyle(fontSize: 18),
+              ),
+              SizedBox(height: 20),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: <Widget>[
+                  _buildDialogButton(
+                    context: context,
+                    color: Color(0xFFD06464),
+                    onTap: () {
+                      Navigator.of(context).pop();
+                    },
+                    message: 'Cancelar',
+                  ),
+                  _buildDialogButton(
+                    context: context,
+                    color: Color(0xFF8EB19D),
+                    onTap: () {
+                      Navigator.of(context).pop();
+                    },
+                    message: 'Renovar',
+                  ),
+                ],
+              ),
+            ],
+          ),
+        );
+      },
+    );
+  }
+
+  RaisedButton _buildDialogButton(
+      {BuildContext context, Color color, Function onTap, String message}) {
+    return RaisedButton(
+      padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 30),
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(10),
+      ),
+      child: Text(
+        message,
+        style: TextStyle(
+          color: Colors.white,
+          fontSize: 16,
+        ),
+      ),
+      color: color,
+      onPressed: onTap,
     );
   }
 }
