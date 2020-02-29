@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:quiver/iterables.dart';
 
 import '../../../../core/domain/entities/subject.dart';
+import '../../../../core/presentation/widgets/circular_progress.dart';
 
 class SubjectDetailsPage extends StatelessWidget {
   SubjectDetailsPage({@required this.subject}) : color = subject.color;
@@ -40,34 +41,38 @@ class SubjectDetailsPage extends StatelessWidget {
           ),
           Column(
             children: zip([subject.times, subject.rooms]).map((row) {
-              return Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: <Widget>[
-                  Container(
-                    margin: EdgeInsets.only(bottom: 20),
-                    padding: EdgeInsets.symmetric(horizontal: 5, vertical: 2),
-                    decoration: BoxDecoration(
-                      color: color,
-                      borderRadius: BorderRadius.all(Radius.circular(5)),
+              return Container(
+                margin: const EdgeInsets.only(bottom: 40),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    Container(
+                      margin: const EdgeInsets.symmetric(horizontal: 10),
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 10, vertical: 5),
+                      decoration: BoxDecoration(
+                        color: color,
+                        borderRadius: BorderRadius.all(Radius.circular(5)),
+                      ),
+                      child: Text(
+                        row[0],
+                        style: TextStyle(fontSize: 18, color: Colors.white),
+                      ),
                     ),
-                    child: Text(
-                      row[0],
-                      style: TextStyle(fontSize: 18, color: Colors.white),
+                    Container(
+                      padding:
+                          EdgeInsets.symmetric(horizontal: 20, vertical: 5),
+                      decoration: BoxDecoration(
+                        color: _darkenColor(color),
+                        borderRadius: BorderRadius.all(Radius.circular(5)),
+                      ),
+                      child: Text(
+                        row[1],
+                        style: TextStyle(fontSize: 18, color: Colors.white),
+                      ),
                     ),
-                  ),
-                  Container(
-                    margin: EdgeInsets.only(bottom: 20),
-                    padding: EdgeInsets.symmetric(horizontal: 10, vertical: 2),
-                    decoration: BoxDecoration(
-                      color: _darkenColor(color),
-                      borderRadius: BorderRadius.all(Radius.circular(5)),
-                    ),
-                    child: Text(
-                      row[1],
-                      style: TextStyle(fontSize: 18, color: Colors.white),
-                    ),
-                  ),
-                ],
+                  ],
+                ),
               );
             }).toList(),
           ),
@@ -76,21 +81,46 @@ class SubjectDetailsPage extends StatelessWidget {
               margin: EdgeInsets.only(left: 30),
               child: Column(
                 children: <Widget>[
-                  statisticItem(
-                    desc: 'Limite de Faltas:',
-                    value: subject.absenceLimit.toString(),
+                  buildProgressItem(
+                    desc: 'Média Parcial:',
+                    stringValue: Text(subject.average.toString()),
+                    value: subject.average,
+                    maxValue: 10,
+                    color:
+                        subject.average >= 6.0 ? Colors.lightGreen : Colors.red,
                   ),
-                  statisticItem(
-                    desc: 'Faltas:',
-                    value: subject.currentAbsences.toString(),
-                  ),
-                  statisticItem(
+                  buildProgressItem(
                     desc: 'Frequência:',
-                    value: '${subject.attendance.toString()}%',
+                    stringValue: Text(
+                      '${subject.attendance}%',
+                      style: TextStyle(fontSize: 14),
+                    ),
+                    value: subject.attendance,
+                    maxValue: 100,
+                    color: subject.attendance >= 75
+                        ? Colors.lightGreen
+                        : Colors.red,
                   ),
-                  statisticItem(
-                    desc: 'Média Parcial',
-                    value: subject.average.toString(),
+                  Column(
+                    children: <Widget>[
+                      statisticItem(
+                        desc: 'Faltas:',
+                        value: subject.currentAbsences.toString(),
+                      ),
+                      SizedBox(height: 5),
+                      DefaultTextStyle(
+                        style: TextStyle(fontSize: 16, color: Colors.grey),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          children: <Widget>[
+                            Text('Limite:'),
+                            SizedBox(width: 30),
+                            Text('${subject.absenceLimit}'),
+                            SizedBox(width: 10),
+                          ],
+                        ),
+                      )
+                    ],
                   ),
                 ],
               ),
@@ -104,9 +134,7 @@ class SubjectDetailsPage extends StatelessWidget {
   }
 
   Color _darkenColor(color) {
-    return HSLColor.fromColor(color)
-                        .withLightness(0.18)
-                        .toColor();
+    return HSLColor.fromColor(color).withLightness(0.18).toColor();
   }
 
   Widget statisticItem({@required String desc, @required String value}) {
@@ -126,6 +154,35 @@ class SubjectDetailsPage extends StatelessWidget {
         ),
       ),
       painter: _CustomDividerPainter(),
+    );
+  }
+
+  buildProgressItem({
+    @required String desc,
+    @required Text stringValue,
+    @required double value,
+    @required double maxValue,
+    @required Color color,
+  }) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: <Widget>[
+        Text(desc, style: TextStyle(fontSize: 18)),
+        Container(
+          width: 70,
+          height: 70,
+          padding: const EdgeInsets.all(8.0),
+          margin: const EdgeInsets.only(right: 20),
+          child: CustomPaint(
+            child: Center(child: stringValue),
+            painter: CircularProgressPainter(
+              color: color,
+              value: value,
+              maxValue: maxValue,
+            ),
+          ),
+        ),
+      ],
     );
   }
 }
