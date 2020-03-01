@@ -1,3 +1,4 @@
+import 'package:cefetapp/features/login/presentation/widgets/login_bottom_decoration.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -14,17 +15,15 @@ class LoginPage extends StatelessWidget {
           ),
           Center(
             child: SingleChildScrollView(
-              reverse: true,
               physics: NeverScrollableScrollPhysics(),
               child: Column(
                 children: <Widget>[
                   Container(
                     padding: const EdgeInsets.symmetric(horizontal: 100),
                     margin: const EdgeInsets.symmetric(vertical: 40),
-                    child: Image.asset('assets/images/logo.png', width: 200),
+                    child: Image.asset('assets/images/logo.png', width: 160),
                   ),
                   Container(
-                    height: MediaQuery.of(context).size.height * 0.3,
                     decoration: BoxDecoration(
                       color: const Color(0xFFFBFBFB),
                       boxShadow: [
@@ -46,9 +45,12 @@ class LoginPage extends StatelessWidget {
                           padding: const EdgeInsets.only(top: 30),
                           child: Form(
                             child: Column(
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                               children: <Widget>[
                                 TextFormField(
-                                  decoration: InputDecoration(hintText: 'RA'),
+                                  decoration: InputDecoration(
+                                    hintText: 'Registro Acadêmico',
+                                  ),
                                 ),
                                 SizedBox(height: 20),
                                 TextFormField(
@@ -56,12 +58,20 @@ class LoginPage extends StatelessWidget {
                                     hintText: 'Senha do Portal do Aluno',
                                   ),
                                 ),
+                                SizedBox(height: 30),
+                                buildLowerButton(
+                                  text: 'Entrar',
+                                  onPressed: () {
+                                    Navigator.of(context)
+                                        .pushReplacementNamed('/home');
+                                  },
+                                ),
                               ],
                             ),
                           ),
                         ),
                         Align(
-                          alignment: Alignment.bottomRight,
+                          alignment: Alignment.topRight,
                           child: Tooltip(
                             message: 'Mensagem de dica',
                             child: Container(
@@ -69,64 +79,30 @@ class LoginPage extends StatelessWidget {
                               height: 30,
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(100),
-                                color: const Color(0xFF5887A9),
+                                border: Border.all(
+                                  color: const Color(0xFF5887A9),
+                                  width: 2,
+                                ),
                               ),
                               child: Center(
                                 child: Text('?',
                                     style: TextStyle(
-                                      color: Colors.white,
+                                      color: const Color(0xFF5887A9),
                                       fontFamily: 'Roboto',
                                       fontSize: 20,
                                     )),
                               ),
                             ),
                           ),
-                        )
+                        ),
                       ],
                     ),
                   ),
+                  SizedBox(height: MediaQuery.of(context).size.height * 0.1),
                   Container(
-                    height: MediaQuery.of(context).size.height * 0.25,
-                    margin: const EdgeInsets.symmetric(horizontal: 60),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: <Widget>[
-                        buildLowerButton(
-                          text: 'Entrar',
-                          onPressed: () {
-                            Navigator.of(context).pushReplacementNamed('/home');
-                          },
-                        ),
-                        Container(
-                          alignment: Alignment.centerLeft,
-                          padding: const EdgeInsets.only(
-                              left: 20, top: 25, bottom: 8),
-                          child: Text('Novo por aqui?',
-                              style: TextStyle(fontSize: 18)),
-                        ),
-                        Builder(
-                          builder: (BuildContext context) {
-                            return buildLowerButton(
-                              text: 'Cadastrar',
-                              onPressed: () {
-                                Scaffold.of(context).showSnackBar(
-                                  SnackBar(
-                                    content: Text('Em construção!'),
-                                    action: SnackBarAction(
-                                      label: 'Ok',
-                                      onPressed: () {
-                                        Scaffold.of(context)
-                                            .hideCurrentSnackBar();
-                                      },
-                                    ),
-                                  ),
-                                );
-                              },
-                            );
-                          },
-                        ),
-                      ],
-                    ),
+                    height: MediaQuery.of(context).size.height * 0.15,
+                    width: double.infinity,
+                    child: LoginBottomDecoration(),
                   )
                 ],
               ),
@@ -141,13 +117,17 @@ class LoginPage extends StatelessWidget {
     return Container(
       width: 500,
       child: FlatButton(
-        padding: const EdgeInsets.symmetric(vertical: 23),
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+        padding: const EdgeInsets.symmetric(vertical: 20),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(22)),
         color: const Color(0xFF5887A9),
         onPressed: onPressed,
         child: Text(
           text,
-          style: TextStyle(color: Colors.white, fontSize: 23),
+          style: TextStyle(
+            color: Colors.white,
+            fontSize: 22,
+            fontWeight: FontWeight.bold,
+          ),
         ),
       ),
     );
