@@ -36,8 +36,8 @@ class _LoginBottomDecorationState extends State<LoginBottomDecoration>
 
   @override
   void dispose() {
-    super.dispose();
     _controller.dispose();
+    super.dispose();
   }
 
   @override
