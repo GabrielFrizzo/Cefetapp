@@ -51,43 +51,55 @@ class MyHomePage extends StatelessWidget {
                     Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: <Widget>[
-                        SizedBox(height: 20),
-                        Expanded(
-                          child: CircleAvatar(
-                            radius: 47,
-                            backgroundColor: Colors.white,
-                            child: Material(
-                              elevation: 4.0,
-                              shape: CircleBorder(),
-                              clipBehavior: Clip.hardEdge,
-                              color: Colors.transparent,
-                              child: Ink.image(
-                                image: NetworkImage(
-                                    'https://avatars2.githubusercontent.com/u/34910470?s=400&u=522442f28ae28b8e12dd27f93291dbfbc6ca4e39&v=4'),
-                                fit: BoxFit.cover,
-                                width: 90,
-                                height: 90,
-                                child: InkWell(
-                                  onTap: () {
-                                    print('asasd');
-                                  },
-                                ),
+                        SizedBox(height: 50),
+                        CircleAvatar(
+                          radius: 47,
+                          backgroundColor: Colors.white,
+                          child: Material(
+                            elevation: 4.0,
+                            shape: CircleBorder(),
+                            clipBehavior: Clip.hardEdge,
+                            color: Colors.transparent,
+                            child: Ink.image(
+                              image: NetworkImage(
+                                  'https://avatars2.githubusercontent.com/u/34910470?s=400&u=522442f28ae28b8e12dd27f93291dbfbc6ca4e39&v=4'),
+                              fit: BoxFit.cover,
+                              width: 90,
+                              height: 90,
+                              child: InkWell(
+                                onTap: () {
+                                  print('asasd');
+                                },
                               ),
                             ),
                           ),
                         ),
-                        FlatButton(
-                          color: Color(0xA0446B86),
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(20)),
-                          child: Text(
-                            'Sair',
-                            style:
-                                TextStyle(color: _headTxtColor, fontSize: 17),
+                        Container(
+                          width: 100,
+                          alignment: Alignment.centerRight,
+                          child: PopupMenuButton(
+                            icon: Icon(
+                              Icons.more_vert,
+                              size: 40,
+                              color: Colors.white,
+                            ),
+                            itemBuilder: (context) {
+                              return [
+                                PopupMenuItem(
+                                  child: Text('Editar Perfil'),
+                                  value: 'Edit',
+                                ),
+                                PopupMenuItem(
+                                  child: Text('Sair'),
+                                  value: 'Exit',
+                                ),
+                              ];
+                            },
+                            onSelected: (value) {
+                              if (value == 'Exit')
+                                Navigator.of(context).popAndPushNamed('/');
+                            },
                           ),
-                          onPressed: () {
-                            Navigator.of(context).pushReplacementNamed('/');
-                          },
                         ),
                       ],
                     ),
@@ -152,7 +164,7 @@ class MyHomePage extends StatelessWidget {
           ),
         ],
       ),
-      child: RaisedButton(
+      child: FlatButton(
         color: Color(0xFFB3D3E5),
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(20),
@@ -160,7 +172,6 @@ class MyHomePage extends StatelessWidget {
         onPressed: () {
           Navigator.of(context).pushNamed(route);
         },
-        elevation: 0,
         child: Row(
           mainAxisSize: MainAxisSize.min,
           children: <Widget>[

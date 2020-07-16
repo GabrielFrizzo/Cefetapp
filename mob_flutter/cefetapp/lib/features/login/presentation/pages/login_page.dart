@@ -1,4 +1,5 @@
 import 'package:cefetapp/features/login/presentation/widgets/login_bottom_decoration.dart';
+import 'package:flare_flutter/flare_actor.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -19,9 +20,11 @@ class LoginPage extends StatelessWidget {
               child: Column(
                 children: <Widget>[
                   Container(
-                    padding: const EdgeInsets.symmetric(horizontal: 100),
-                    margin: const EdgeInsets.symmetric(vertical: 40),
-                    child: Image.asset('assets/images/logo.png', width: 160),
+                    height: 250,
+                    child: FlareActor(
+                      'assets/animations/logo_cefetapp.flr',
+                      animation: 'write_utf',
+                    ),
                   ),
                   Container(
                     decoration: BoxDecoration(
@@ -100,7 +103,7 @@ class LoginPage extends StatelessWidget {
                   ),
                   SizedBox(height: MediaQuery.of(context).size.height * 0.1),
                   Container(
-                    height: MediaQuery.of(context).size.height * 0.15,
+                    height: MediaQuery.of(context).size.height * 0.18,
                     width: double.infinity,
                     child: LoginBottomDecoration(),
                   )
